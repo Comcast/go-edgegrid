@@ -10,7 +10,7 @@ A Golang [Akamai](https://developer.akamai.com/api/) API client.
 
 Assuming Golang is properly installed:
 
-```
+```bash
 go get github.com/comcast/edgegrid-golang
 ```
 
@@ -18,7 +18,7 @@ go get github.com/comcast/edgegrid-golang
 
 Basic usage assumes you've established up the following environment variables.
 
-```
+```bash
 AKAMAI_EDGEGRID_HOST=
 AKAMAI_EDGEGRID_CLIENT_TOKEN=
 AKAMAI_EDGEGRID_ACCESS_TOKEN=
@@ -27,13 +27,13 @@ AKAMAI_EDGEGRID_CLIENT_SECRET=
 
 To log request/response details:
 
-```
+```bash
 AK_LOG=true
 ```
 
 ### GTMClient
 
-```
+```go
 import "edgegrid"
 
 client := edgegrid.NewGTMClient()
@@ -105,7 +105,7 @@ client.PropertyDelete("domain", "property")
 
 ### PAPIClient
 
-```
+```go
 import "edgegrid"
 
 client := edgegrid.NewPAPIClient()
@@ -122,7 +122,7 @@ In addition to the `edgegrid.GTMClient` and `edgegrid.PAPIClient` convenience cl
 
 Example:
 
-```
+```go
 package main
 
 import (
@@ -155,6 +155,6 @@ func main() {
 
 Tests use the built-in `testing` package:
 
-```
+```bash
 make test
 ```
