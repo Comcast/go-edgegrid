@@ -1,5 +1,7 @@
 # edgegrid
 
+[![Build Status](https://travis-ci.org/Comcast/edgegrid-golang.svg?branch=master)](https://travis-ci.org/Comcast/edgegrid-golang)
+
 A Golang [Akamai](https://developer.akamai.com/api/) API client.
 
 [Akamai {OPEN} EdgeGrid Authentication](https://developer.akamai.com/introduction/Client_Auth.html) for Golang.
