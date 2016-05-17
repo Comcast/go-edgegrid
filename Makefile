@@ -7,6 +7,7 @@ updatedeps:
 		go get -u golang.org/x/tools/cmd/cover; \
 	fi
 	go get github.com/gobs/pretty
+	go get github.com/golang/lint/golint
 	go get
 
 test:
@@ -21,9 +22,6 @@ install:
 	go install
 
 lint:
-	golint . 2>/dev/null ; if [ $$? -eq 3 ]; then \
-		go get -u github.com/golang/lint/golint; \
-	fi
 	golint -set_exit_status .
 
 # vet runs the Go source code static analysis tool `vet` to find
