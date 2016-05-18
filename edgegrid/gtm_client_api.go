@@ -8,6 +8,7 @@ import (
 	"sort"
 )
 
+// Domains returns the Akamai GTM domains for the GTMClient
 func (c *GTMClient) Domains() ([]DomainSummary, error) {
 	domains := &Domains{}
 	err := resourceRequest(c, "GET", domainsEndpoint(c.GetCredentials()), nil, domains)
@@ -17,18 +18,22 @@ func (c *GTMClient) Domains() ([]DomainSummary, error) {
 	return domains.Domains, err
 }
 
+// Domain takes an Akamai GTM domain name and returns its details
 func (c *GTMClient) Domain(name string) (*Domain, error) {
 	domain := &Domain{}
 	err := resourceRequest(c, "GET", domainEndpoint(c.GetCredentials(), name), nil, domain)
 	return domain, err
 }
 
+// DomainStatus takes an Akamai GTM domain name and returns its status
 func (c *GTMClient) DomainStatus(name string) (*ResourceStatus, error) {
 	status := &ResourceStatus{}
 	err := resourceRequest(c, "GET", domainStatusEndpoint(c.GetCredentials(), name), nil, status)
 	return status, err
 }
 
+// DomainCreate takes an Akamai GTM domain name and a domain type and creates
+// the domain via the Akamai GTM API
 func (c *GTMClient) DomainCreate(name string, domainType string) (*DomainResponse, error) {
 	payload := map[string]string{
 		"name": name,
@@ -44,6 +49,7 @@ func (c *GTMClient) DomainCreate(name string, domainType string) (*DomainRespons
 	return createdDomain, err
 }
 
+// DomainUpdate takes a Domain and updates its details via the Akamai GTM API
 func (c *GTMClient) DomainUpdate(domain *Domain) (*DomainResponse, error) {
 	jsonRequest, err := json.Marshal(domain)
 	if err != nil {
@@ -54,6 +60,8 @@ func (c *GTMClient) DomainUpdate(domain *Domain) (*DomainResponse, error) {
 	return updatedDomain, err
 }
 
+// DataCenters takes an Akamai GTM domain name string and returns a []DataCenter
+// representing the datacenters associated with the domain
 func (c *GTMClient) DataCenters(domain string) ([]DataCenter, error) {
 	dcs := &DataCenters{}
 	err := resourceRequest(c, "GET", dcsEndpoint(c.GetCredentials(), domain), nil, dcs)
@@ -63,6 +71,8 @@ func (c *GTMClient) DataCenters(domain string) ([]DataCenter, error) {
 	return dcs.Items, err
 }
 
+// DataCenterCreate takes an Akamai GTM domain name string and a DataCenter and
+// creates the DataCenter via the Akamai GTM API
 func (c *GTMClient) DataCenterCreate(domain string, dc *DataCenter) (*DataCenterResponse, error) {
 	jsonRequest, err := json.Marshal(dc)
 	if err != nil {
@@ -73,12 +83,16 @@ func (c *GTMClient) DataCenterCreate(domain string, dc *DataCenter) (*DataCenter
 	return resource, err
 }
 
+// DataCenter takes an Akamai GTM domain name string and a datacenter ID and
+// returns the DataCenter for the given ID
 func (c *GTMClient) DataCenter(domain string, id int) (*DataCenter, error) {
 	dc := &DataCenter{}
 	err := resourceRequest(c, "GET", dcEndpoint(c.GetCredentials(), domain, id), nil, dc)
 	return dc, err
 }
 
+// DataCenterUpdate takes an Akamai GTM domain name string and a DataCenter and
+// updates the DataCenter details via the Akamai GTM API
 func (c *GTMClient) DataCenterUpdate(domain string, dc *DataCenter) (*DataCenterResponse, error) {
 	jsonRequest, err := json.Marshal(dc)
 	if err != nil {
@@ -89,6 +103,8 @@ func (c *GTMClient) DataCenterUpdate(domain string, dc *DataCenter) (*DataCenter
 	return resource, err
 }
 
+// DataCenterByName takes an Akamai GTM domain name string and a datacenter name string
+// and returns the matching DataCenter
 func (c *GTMClient) DataCenterByName(domain string, name string) (*DataCenter, error) {
 	dcs, err := c.DataCenters(domain)
 	if err != nil {
@@ -103,6 +119,8 @@ func (c *GTMClient) DataCenterByName(domain string, name string) (*DataCenter, e
 	return &DataCenter{}, fmt.Errorf("DataCenter named: %s not found in domain: %s", name, domain)
 }
 
+// DataCenterDelete takes an Akamai GTM domain name string and a datacenter ID and
+// deletes the matching datacenter via the Akamai GTM API
 func (c *GTMClient) DataCenterDelete(domain string, id int) error {
 	resp, err := doClientReq(c, "DELETE", dcEndpoint(c.GetCredentials(), domain, id), nil)
 
@@ -115,24 +133,32 @@ func (c *GTMClient) DataCenterDelete(domain string, id int) error {
 	return err
 }
 
+// Properties takes an Akamai GTM domain name string and returns the Akamai GTM properties
+// associated with the domain
 func (c *GTMClient) Properties(domain string) (*Properties, error) {
 	props := &Properties{}
 	err := resourceRequest(c, "GET", propertiesEndpoint(c.GetCredentials(), domain), nil, props)
 	return props, err
 }
 
+// PropertiesSorted sorted takes an Akamai GTM domain name string and returns the Akamai GTM
+// properties associated with the domain name, sorted by their names
 func (c *GTMClient) PropertiesSorted(domain string) (*Properties, error) {
 	props, err := c.Properties(domain)
 	sort.Sort(props)
 	return props, err
 }
 
+// Property takes an Akamai GTM domain name string and a property name string
+// and returns the matching Akamai GTM property
 func (c *GTMClient) Property(domain, property string) (*Property, error) {
 	prop := &Property{}
 	err := resourceRequest(c, "GET", propertyEndpoint(c.GetCredentials(), domain, property), nil, prop)
 	return prop, err
 }
 
+// PropertyCreate takes an Akamai GTM domain name string and a Property and creates
+// the Property via the Akamai GTM API
 func (c *GTMClient) PropertyCreate(domain string, property *Property) (*PropertyResponse, error) {
 	jsonRequest, err := json.Marshal(property)
 	if err != nil {
@@ -144,10 +170,14 @@ func (c *GTMClient) PropertyCreate(domain string, property *Property) (*Property
 	return resource, err
 }
 
+// PropertyUpdate takes an Akamai GTM domain name string and a Property and updates
+// the Property details via the Akamai GTM API
 func (c *GTMClient) PropertyUpdate(domain string, property *Property) (*PropertyResponse, error) {
 	return c.PropertyCreate(domain, property)
 }
 
+// PropertyDelete takes an Akamai GTM domain name string and a property name string
+// and deletes the matching Akamai GTM property via the Akamai GTM API
 func (c *GTMClient) PropertyDelete(domain string, property string) (bool, error) {
 	url := propertyEndpoint(c.GetCredentials(), domain, property)
 	resp, err := doClientReq(c, "DELETE", url, nil)
