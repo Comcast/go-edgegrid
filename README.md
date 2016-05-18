@@ -1,6 +1,6 @@
 # edgegrid
 
-[![Build Status](https://travis-ci.org/Comcast/edgegrid-golang.svg?branch=master)](https://travis-ci.org/Comcast/edgegrid-golang)
+[![Build Status](https://travis-ci.org/Comcast/go-edgegrid.svg?branch=master)](https://travis-ci.org/Comcast/go-edgegrid)
 
 A Golang [Akamai](https://developer.akamai.com/api/) API client.
 
@@ -13,7 +13,7 @@ A Golang [Akamai](https://developer.akamai.com/api/) API client.
 Assuming Golang is properly installed:
 
 ```bash
-go get github.com/comcast/edgegrid-golang
+go get github.com/comcast/go-edgegrid/edgegrid
 ```
 
 ## Basic Usage
@@ -36,7 +36,7 @@ AK_LOG=true
 ### GTMClient
 
 ```go
-import "edgegrid"
+import "github.com/comcast/go-edgegrid/edgegrid"
 
 client := edgegrid.NewGTMClient()
 
@@ -108,7 +108,7 @@ client.PropertyDelete("domain", "property")
 ### PAPIClient
 
 ```go
-import "edgegrid"
+import "github.com/comcast/go-edgegrid/edgegrid"
 
 client := edgegrid.NewPAPIClient()
 
@@ -129,10 +129,11 @@ package main
 
 import (
   "fmt"
-  "github.com/comcast/edgegrid-golang"
   "io/ioutil"
   "net/http"
   "os"
+
+  "github.com/comcast/go-edgegrid/edgegrid"
 )
 
 func main() {

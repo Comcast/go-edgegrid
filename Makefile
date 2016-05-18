@@ -1,4 +1,5 @@
 VETARGS?=-all
+SOURCE?=./...
 
 all: updatedeps lint vet test install
 
@@ -8,21 +9,21 @@ updatedeps:
 	fi
 	go get github.com/gobs/pretty
 	go get github.com/golang/lint/golint
-	go get
+	go get $(SOURCE)
 
 test:
-	go test $(TEST) -cover
+	go test $(SOURCE) -cover
 
 cover:
-	go test $(TEST) -coverprofile=coverage.out
-	go tool cover -html=coverage.out
+	go test $(SOURCE) -coverprofile=coverage.out
+	cd edgegrid; go tool cover -html=../coverage.out
 	rm coverage.out
 
 install:
-	go install
+	go install $(SOURCE)
 
 lint:
-	golint -set_exit_status .
+	golint -set_exit_status edgegrid
 
 # vet runs the Go source code static analysis tool `vet` to find
 # any common errors.
@@ -30,8 +31,8 @@ vet:
 	@go tool vet 2>/dev/null ; if [ $$? -eq 3 ]; then \
 		go get golang.org/x/tools/cmd/vet; \
 	fi
-	@echo "go tool vet $(VETARGS) ."
-	@go tool vet $(VETARGS) $$(ls -d *.go | grep -v vendor) ; if [ $$? -eq 1 ]; then \
+	@echo "go tool vet $(VETARGS) edgegrid"
+	@go tool vet $(VETARGS) edgegrid ; if [ $$? -eq 1 ]; then \
 		echo ""; \
 		echo "Vet found suspicious constructs. Please check the reported constructs"; \
 		echo "and fix them if necessary before submitting the code for review."; \
