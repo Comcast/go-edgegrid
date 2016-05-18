@@ -4,21 +4,32 @@ import (
 	"strings"
 )
 
+// Domains is a representation of the Akamai GTM
+// domains response available at:
+// http://apibase.com/config-gtm/v1/domains
 type Domains struct {
 	Domains []DomainSummary `json:"items"`
 }
 
+// DomainSummary is a representation of the Akamai GTM
+// domain summary associated with each domain returned by
+// the domains response at:
+// http://apibase.com/config-gtm/v1/domains
 type DomainSummary struct {
 	Name         string `json:"name"`
 	Status       string `json:"status"`
 	LastModified string `json:"lastModified"`
 }
 
+// DomainResponse is a representation of the Akamai GTM
+// response from a domain CREATEs and UPDATEs at:
+// http://apibase.com/config-gtm/v1/domains/domain
 type DomainResponse struct {
 	Domain *Domain         `json:"resource"`
 	Status *ResourceStatus `json:"status"`
 }
 
+// Domain is a representation of an Akamai GTM domain
 type Domain struct {
 	Name                 string          `json:"name"`
 	Status               *ResourceStatus `json:"status,omitempty"`
@@ -34,6 +45,8 @@ type Domain struct {
 	Resources            []interface{}   `json:"resources,omitempty"`
 }
 
+// ResourceStatus is a representation of an Akamai GTM status for
+// a given resource, such as a domain
 type ResourceStatus struct {
 	Message               string `json:"message"`
 	ChangeId              string `json:"changeId"`
@@ -43,15 +56,22 @@ type ResourceStatus struct {
 	Links                 []Link `json:"links"`
 }
 
+// DataCenters is a representation of an Akamai GTM datacenters
+// response returned from:
+// http://apibase.com/config-gtm/v1/domains/domain/datacenters
 type DataCenters struct {
 	Items []DataCenter `json:"items"`
 }
 
+// DataCenterResponse is a representation of an Akamai GTM datacenter
+// response returned from datacenter CREATEs and UPDATEs at:
+// http://apibase.com/config-gtm/v1/domains/domain/datacenters/4
 type DataCenterResponse struct {
 	DataCenter *DataCenter     `json:"resource"`
 	Status     *ResourceStatus `json:"status"`
 }
 
+// DataCenter represents and Akamai GTM datacenter
 type DataCenter struct {
 	City                 string             `json:"city"`
 	CloneOf              int                `json:"cloneOf,omitempty"`
@@ -68,17 +88,23 @@ type DataCenter struct {
 	Virtual              bool               `json:"virtual"`
 }
 
+// Link represents the link objects embedded in Akamai GTM API
+// response JSON
 type Link struct {
 	Href string `json:"href"`
 	Rel  string `json:"rel"`
 }
 
+// DefaultLoadObject represents the default load object associated
+// with an Akamai GTM datacenter
 type DefaultLoadObject struct {
 	LoadObject     interface{} `json:"loadObject"`
 	LoadObjectPort int64       `json:"loadObjectPort"`
 	LoadServers    interface{} `json:"loadServers"`
 }
 
+// LoadObject represents the load object associated with an Akamai
+// GTM datacenter
 type LoadObject struct {
 	LoadObject           string `json:"loadObject"`
 	LoadObjectPort       string `json:"loadObjectPort"`
@@ -87,11 +113,16 @@ type LoadObject struct {
 	CloudServerTargeting bool   `json:"cloudServerTargeting"`
 }
 
+// PropertyResponse represents the Akamai GTM response returned
+// by Akamai GTM API CREATEs and DELETEs against:
+// http://apibase.com/config-gtm/v1/domains/domain/properties/property
 type PropertyResponse struct {
 	Property *Property       `json:"resource"`
 	Status   *ResourceStatus `json:"status"`
 }
 
+// Properties represents the properties returned from:
+// http://apibase.com/config-gtm/v1/domains/domain/properties/property
 type Properties struct {
 	Properties []Property `json:"items"`
 }
@@ -108,6 +139,7 @@ func (props Properties) Swap(i, j int) {
 	props.Properties[i], props.Properties[j] = props.Properties[j], props.Properties[i]
 }
 
+// Property represents an Akamai GTM property
 type Property struct {
 	BackupCname               string          `json:"backupCName,omitempty"`
 	BackupIp                  string          `json:"backupIp,omitempty"`
@@ -140,6 +172,8 @@ type Property struct {
 	UseComputedTargets        bool            `json:"useComputedTargets,omitempty"`
 }
 
+// LivenessTest represents a liveness test associated with an Akamai
+// GTM property
 type LivenessTest struct {
 	Name                          string  `json:"name"`
 	HTTPError3xx                  bool    `json:"httpError3xx,omitempty"`
@@ -160,6 +194,8 @@ type LivenessTest struct {
 	HostHeader                    string  `json:"hostHeader,omitempty"`
 }
 
+// TrafficTarget represents a traffic target associated with an Akamai
+// GTM property
 type TrafficTarget struct {
 	DataCenterID int         `json:"datacenterId"`
 	Enabled      bool        `json:"enabled"`
@@ -169,6 +205,8 @@ type TrafficTarget struct {
 	Weight       float64     `json:"weight"`
 }
 
+// AkamaiError represents a non-successful HTTP response from the
+// Akamai API
 type AkamaiError struct {
 	Type         string `json:"type"`
 	Title        string `json:"title"`
