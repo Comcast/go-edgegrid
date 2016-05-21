@@ -114,6 +114,45 @@ client := edgegrid.NewPAPIClient()
 
 // get all PAPI groups
 client.Groups()
+
+// get all PAPI products
+client.Groups("someContractId")
+
+// get all PAPI CP codes for a contract and group
+client.CpCodes("someContractId", "someGroupID")
+
+// get a PAPI CP code
+client.CpCode("someCPCodeID", "someContractId", "someGroupID")
+
+// get all PAPI hostnames for a contract & group
+client.Hostnames("someContractId", "someGroupID")
+
+// get a PAPI hostname for a contract & group
+client.Hostnames("someHostID", "someContractId", "someGroupID")
+
+// get all PAPI properties for a contract & group
+client.Properties("someContractId", "someGroupID")
+
+// get a PAPI property for a contract & group
+client.Property("somePropertyID", "someContractId", "someGroupID")
+
+// get all PAPI property versions for a property, contract, & group
+client.Versions("somePropertyID", "someContractId", "someGroupID")
+
+// get a PAPI property version for a property, contract, & group
+client.Version("somePropertyVersion", "somePropertyID", "someContractId", "someGroupID")
+
+// get a PAPI property version XML for a property, contract, & group
+client.PropertyVersionXML("somePropertyVersion", "somePropertyID", "someContractId", "someGroupID")
+
+// get the latest PAPI property version for a property, contract, & group
+client.PropertyLatestVersion("somePropertyID", "someContractId", "someGroupID")
+
+// get the PAPI property rules for a property, contract, & group
+client.PropertyRules("somePropertyID", "someContractId", "someGroupID")
+
+// get the PAPI property activations for a property, contract, & group
+client.PropertyActivations("somePropertyID", "someContractId", "someGroupID")
 ```
 
 ### Alternative Usage
