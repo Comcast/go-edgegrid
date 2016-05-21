@@ -4,7 +4,7 @@ const papiPath = "/papi/v0/"
 
 func papiBase(c *AuthCredentials) string {
 	return concat([]string{
-		c.ApiHost,
+		c.APIHost,
 		papiPath,
 	})
 }

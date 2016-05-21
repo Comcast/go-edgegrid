@@ -13,8 +13,8 @@ func TestNewCredentials(t *testing.T) {
 
 	creds := NewCredentials()
 
-	if creds.ApiHost != "https://apiHost" {
-		t.Error("ClientWithCredsFromEnv should set an ApiHost")
+	if creds.APIHost != "https://apiHost" {
+		t.Error("ClientWithCredsFromEnv should set an APIHost")
 	}
 
 	if creds.AccessToken != "accessToken" {

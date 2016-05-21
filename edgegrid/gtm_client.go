@@ -6,7 +6,7 @@ import "net/http"
 // https://developer.akamai.com/api/luna/config-gtm/overview.html
 type GTMClient struct {
 	Credentials *AuthCredentials
-	HttpClient  *http.Client
+	HTTPClient  *http.Client
 }
 
 // GetCredentials takes a GTMClient and returns its Credentials
@@ -14,7 +14,7 @@ func (c GTMClient) GetCredentials() *AuthCredentials {
 	return c.Credentials
 }
 
-// GetHttpClient takes a GTMClient and returns its HttpClient
-func (c GTMClient) GetHttpClient() *http.Client {
-	return c.HttpClient
+// GetHTTPClient takes a GTMClient and returns its HTTPClient
+func (c GTMClient) GetHTTPClient() *http.Client {
+	return c.HTTPClient
 }

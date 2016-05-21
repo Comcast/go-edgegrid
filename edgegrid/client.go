@@ -8,7 +8,7 @@ import (
 // Client is an interface for an Akamai API client
 type Client interface {
 	GetCredentials() *AuthCredentials
-	GetHttpClient() *http.Client
+	GetHTTPClient() *http.Client
 }
 
 // AuthCredentials houses various Akamai-client-specific
@@ -17,7 +17,7 @@ type AuthCredentials struct {
 	AccessToken  string
 	ClientToken  string
 	ClientSecret string
-	ApiHost      string
+	APIHost      string
 }
 
 // GTMClientWithCreds takes an access token string, a client token string,

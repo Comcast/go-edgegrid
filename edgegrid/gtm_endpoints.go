@@ -8,7 +8,7 @@ const gtmPath = "/config-gtm/v1/"
 
 func gtmBase(c *AuthCredentials) string {
 	return concat([]string{
-		c.ApiHost,
+		c.APIHost,
 		gtmPath,
 	})
 }
