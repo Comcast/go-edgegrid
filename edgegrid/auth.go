@@ -147,9 +147,9 @@ func makeContentHash(req *http.Request) string {
 		req.Body = rdr
 
 		return base64Sha256(string(buf))
-	} else {
-		return ""
 	}
+
+	return ""
 }
 
 func makeSigningKey(timestamp, clientSecret string) string {
