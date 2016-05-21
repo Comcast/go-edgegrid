@@ -1,7 +1,7 @@
 package edgegrid
 
 const (
-	groupsJson = `{
+	groupsJSON = `{
 		"groups": {
 			"items": [{
 				"groupName": "group one",
@@ -17,7 +17,7 @@ const (
 		}
 	}`
 
-	productsJson = `{
+	productsJSON = `{
 		"products": {
 			"items": [{
 				"productName": "prod one",
@@ -29,7 +29,7 @@ const (
 		}
 	}`
 
-	cpCodesJson = `{
+	cpCodesJSON = `{
 		"accountId": "act_1-1TJZFB",
 		"contractId": "ctr_1-1TJZFW",
 		"groupId": "grp_15225",
@@ -43,7 +43,7 @@ const (
 		}
 	}`
 
-	hostnamesJson = `{
+	hostnamesJSON = `{
 		"edgeHostnames": {
 			"items": [{
 				"edgeHostnameId": "hostId1",
@@ -56,7 +56,7 @@ const (
 		}
 	}`
 
-	propertiesJson = `{
+	propertiesJSON = `{
 		"properties": {
 			"items": [{
 				"accountId": "accountId",
@@ -72,7 +72,7 @@ const (
 		}
 	}`
 
-	propertyVersionsJson = `{
+	propertyVersionsJSON = `{
 		"versions": {
 			"items": [{
 				"propertyVersion": 2,
@@ -87,7 +87,7 @@ const (
 		}
 	}`
 
-	propertyRulesJson = `{
+	propertyRulesJSON = `{
 		"rules": {
 			"name": "default",
 			"options": {
@@ -98,21 +98,21 @@ const (
 			{
 				"name": "origin",
 				"options": {
-					"type"              : "customer",
-					"hostname"          : "example.com",
-					"forwardhostheader" : "requesthostheader",
-					"cachekeyhostname"  : "originhostname",
-					"compression"       : "on",
-					"tcip_enabled"      : "off",
-					"http_port"         : "80"
+					"type": "customer",
+					"hostname": "example.com",
+					"forwardhostheader": "requesthostheader",
+					"cachekeyhostname": "originhostname",
+					"compression": "on",
+					"tcip_enabled": "off",
+					"http_port": "80"
 				}
 			},
 			{
 				"name": "cpCode",
 				"options": {
 					"cpcode": {
-						"id"   : 12345,
-						"name" : "main site"
+						"id": 12345,
+						"name": "main site"
 					}
 				}
 			}
@@ -120,7 +120,7 @@ const (
 		}
 	}`
 
-	activationsJson = `{
+	activationsJSON = `{
 		"accountId": "act_1-1TJZFB",
 		"contractId": "ctr_1-1TJZH5",
 		"groupId": "grp_15225",

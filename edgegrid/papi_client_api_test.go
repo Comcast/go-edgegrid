@@ -38,7 +38,7 @@ func papiTestTools(code int, body string) (*httptest.Server, *PAPIClient) {
 }
 
 func TestPAPIGroups(t *testing.T) {
-	server, client := papiTestTools(200, groupsJson)
+	server, client := papiTestTools(200, groupsJSON)
 	defer server.Close()
 
 	groups, err := client.Groups()
@@ -61,7 +61,7 @@ func TestPAPIGroups(t *testing.T) {
 }
 
 func TestPAPIProducts(t *testing.T) {
-	server, client := papiTestTools(200, productsJson)
+	server, client := papiTestTools(200, productsJSON)
 	defer server.Close()
 
 	prods, err := client.Products("contractId")
@@ -84,7 +84,7 @@ func TestPAPIProducts(t *testing.T) {
 }
 
 func TestPAPICpCodes(t *testing.T) {
-	server, client := papiTestTools(200, cpCodesJson)
+	server, client := papiTestTools(200, cpCodesJSON)
 	defer server.Close()
 
 	cps, err := client.CpCodes("contractId", "groupId")
@@ -113,7 +113,7 @@ func TestPAPICpCodes(t *testing.T) {
 }
 
 func TestPAPICpCode(t *testing.T) {
-	server, client := papiTestTools(200, cpCodesJson)
+	server, client := papiTestTools(200, cpCodesJSON)
 	defer server.Close()
 
 	c, err := client.CpCode("cpCodeId", "contractId", "groupId")
@@ -137,7 +137,7 @@ func TestPAPICpCode(t *testing.T) {
 }
 
 func TestPAPIHostnames(t *testing.T) {
-	server, client := papiTestTools(200, hostnamesJson)
+	server, client := papiTestTools(200, hostnamesJSON)
 	defer server.Close()
 
 	hostnames, err := client.Hostnames("contractId", "groupId")
@@ -173,7 +173,7 @@ func TestPAPIHostnames(t *testing.T) {
 }
 
 func TestPAPIHostname(t *testing.T) {
-	server, client := papiTestTools(200, hostnamesJson)
+	server, client := papiTestTools(200, hostnamesJSON)
 	defer server.Close()
 
 	h, err := client.Hostname("hostId", "contractId", "groupId")
@@ -203,7 +203,7 @@ func TestPAPIHostname(t *testing.T) {
 }
 
 func TestPAPIProperties(t *testing.T) {
-	server, client := papiTestTools(200, propertiesJson)
+	server, client := papiTestTools(200, propertiesJSON)
 	defer server.Close()
 
 	ps, err := client.Properties("contractId", "groupId")
@@ -244,7 +244,7 @@ func TestPAPIProperties(t *testing.T) {
 }
 
 func TestPAPIProperty(t *testing.T) {
-	server, client := papiTestTools(200, propertiesJson)
+	server, client := papiTestTools(200, propertiesJSON)
 	defer server.Close()
 
 	p, err := client.Property("propId", "contractId", "groupId")
@@ -283,7 +283,7 @@ func TestPAPIProperty(t *testing.T) {
 }
 
 func TestPAPIPropertyVersions(t *testing.T) {
-	server, client := papiTestTools(200, propertyVersionsJson)
+	server, client := papiTestTools(200, propertyVersionsJSON)
 	defer server.Close()
 
 	vs, err := client.PropertyVersions("propId", "contractId", "groupId")
@@ -321,7 +321,7 @@ func TestPAPIPropertyVersions(t *testing.T) {
 }
 
 func TestPAPIPropertyVersion(t *testing.T) {
-	server, client := papiTestTools(200, propertyVersionsJson)
+	server, client := papiTestTools(200, propertyVersionsJSON)
 	defer server.Close()
 
 	v, err := client.PropertyVersion("2", "propId", "contractId", "groupId")
@@ -372,7 +372,7 @@ func TestPAPIPropertyVersionXml(t *testing.T) {
 }
 
 func TestPAPIPropertyLatestVersion(t *testing.T) {
-	server, client := papiTestTools(200, propertyVersionsJson)
+	server, client := papiTestTools(200, propertyVersionsJSON)
 	defer server.Close()
 
 	v, err := client.PropertyLatestVersion("propId", "contractId", "groupId")
@@ -408,7 +408,7 @@ func TestPAPIPropertyLatestVersion(t *testing.T) {
 }
 
 func TestPAPIPropertyRules(t *testing.T) {
-	server, client := papiTestTools(200, propertyRulesJson)
+	server, client := papiTestTools(200, propertyRulesJSON)
 	defer server.Close()
 
 	r, err := client.PropertyRules("propId", "version", "contractId", "groupId")
@@ -426,7 +426,7 @@ func TestPAPIPropertyRules(t *testing.T) {
 }
 
 func TestPAPIActivations(t *testing.T) {
-	server, client := papiTestTools(200, activationsJson)
+	server, client := papiTestTools(200, activationsJSON)
 	defer server.Close()
 
 	r, err := client.Activations("propId", "contractId", "groupId")

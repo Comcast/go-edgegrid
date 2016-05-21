@@ -1,7 +1,7 @@
 package edgegrid
 
 const (
-	domainsJson = `{
+	domainsJSON = `{
 	  "items": [
 	    {
 	      "acgId": "1-2345",
@@ -30,7 +30,7 @@ const (
 	  ]
 	}`
 
-	createdDomainJson = `{
+	createdDomainJSON = `{
     "resource": {
         "cidrMaps": [],
         "datacenters": [],
@@ -86,7 +86,7 @@ const (
     }
 	}`
 
-	domainJson = `{
+	domainJSON = `{
       "links": [
           {
               "href": "/config-gtm/v1/domains/example.akadns.net",
@@ -642,7 +642,7 @@ const (
       "type": "full"
   }
 	`
-	domainStatusJson = `{
+	domainStatusJSON = `{
 		"message": "ERROR: Some error",
 		"changeId": "123",
 		"propagationStatus": "DENIED",
@@ -651,7 +651,7 @@ const (
 		"links": []
 	}`
 
-	updatedDomainJson = `{
+	updatedDomainJSON = `{
     "resource": {
         "links": [
             {
@@ -1221,7 +1221,7 @@ const (
     }
   }`
 
-	dataCenterJson = `{
+	dataCenterJSON = `{
 		"nickname":"dcNickname",
 		"city":"city",
 		"stateOrProvince":"state",
@@ -1244,7 +1244,7 @@ const (
 		"datacenterId":1
 	}`
 
-	createdDataCenterJson = `{
+	createdDataCenterJSON = `{
 	  "resource": {
 	    "city": "Doune",
 	    "cloneOf": 0,
@@ -1283,7 +1283,7 @@ const (
 	  }
 	}`
 
-	dataCentersJson = `{
+	dataCentersJSON = `{
 		"items":[{
 			"nickname":"dcOne",
 			"city":"Some City",
@@ -1329,7 +1329,7 @@ const (
 		}]
 	}`
 
-	createdPropertyJson = `{
+	createdPropertyJSON = `{
 	  "resource": {
 	    "backupCName": null,
 	    "backupIp": null,
@@ -1422,7 +1422,7 @@ const (
 	  }
 	}`
 
-	propJson = `{
+	propJSON = `{
 		"backupCName":null,
 		"backupIp":null,
 		"balanceByDownloadScore":false,
@@ -1489,14 +1489,14 @@ const (
 		"name":"someName"
 	}`
 
-	errorResponseJson = `{
+	errorResponseJSON = `{
     "type": "https://problems.luna.akamaiapis.net/config-gtm/v1/serverError",
     "title": "Server Error",
     "status": 500,
     "detail": "Could not read JSON: parse exception"
   }`
 
-	propertiesResponseJson = `{
+	propertiesResponseJSON = `{
 		"items":[
 			{
 				"backupCName":null,
