@@ -49,7 +49,7 @@ type Domain struct {
 // a given resource, such as a domain
 type ResourceStatus struct {
 	Message               string `json:"message"`
-	ChangeId              string `json:"changeId"`
+	ChangeID              string `json:"changeId"`
 	PropagationStatus     string `json:"propagationStatus"`
 	PropagationStatusDate string `json:"propagationStatusDate"`
 	PassingValidation     bool   `json:"passingValidation"`
@@ -142,7 +142,7 @@ func (props Properties) Swap(i, j int) {
 // Property represents an Akamai GTM property
 type Property struct {
 	BackupCname               string          `json:"backupCName,omitempty"`
-	BackupIp                  string          `json:"backupIp,omitempty"`
+	BackupIP                  string          `json:"backupIp,omitempty"`
 	BalanceByDownloadScore    bool            `json:"balanceByDownloadScore,omitempty"`
 	Cname                     string          `json:"cname,omitempty"`
 	Comments                  string          `json:"comments,omitempty"`
