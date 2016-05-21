@@ -14,10 +14,10 @@ type Groups struct {
 // the groups response at:
 // http://apibase.com/papi/v0/groups/
 type GroupSummary struct {
-	GroupId       string   `json:"groupId"`
+	GroupID       string   `json:"groupId"`
 	Name          string   `json:"groupName"`
-	ContractIds   []string `json:"contractIds"`
-	ParentGroupId string   `json:"parentGroupId"`
+	ContractIDs   []string `json:"contractIds"`
+	ParentGroupID string   `json:"parentGroupId"`
 }
 
 // Products is a representation of the Akamai PAPI
@@ -34,7 +34,7 @@ type Products struct {
 // by the products response at:
 // http://apibase.com/papi/v0/products?contractId=someId
 type ProductSummary struct {
-	ProductId string `json:"productId"`
+	ProductID string `json:"productId"`
 	Name      string `json:"productName"`
 }
 
@@ -52,9 +52,9 @@ type CpCodes struct {
 // by the CP codes response at:
 // http://apibase.com/papi/v0/cpcodes/?contractId=contractId&groupId=groupId
 type CpCodeSummary struct {
-	CpCodeId    string   `json:"cpcodeId"`
+	CPCodeID    string   `json:"cpcodeId"`
 	Name        string   `json:"cpcodeName"`
-	ProductIds  []string `json:"productIds"`
+	ProductIDs  []string `json:"productIds"`
 	CreatedDate string   `json:"createdDate"`
 }
 
@@ -72,10 +72,10 @@ type Hostnames struct {
 // by the hostnames response at:
 // http://apibase.com/papi/v0/edgehostnames?contractId=contractId&groupId=groupId
 type HostnameSummary struct {
-	EdgeHostnameId     string `json:"edgeHostnameId"`
+	EdgeHostnameID     string `json:"edgeHostnameId"`
 	DomainPrefix       string `json:"domainPrefix"`
 	DomainSuffix       string `json:"domainSuffix"`
-	IpVersionBehavior  string `json:"ipVersionBehavior"`
+	IPVersionBehavior  string `json:"ipVersionBehavior"`
 	Secure             bool   `json:"secure"`
 	EdgeHostnameDomain string `json:"edgehostnameDomain"`
 }
@@ -94,10 +94,10 @@ type PapiProperties struct {
 // the properties response at:
 // http://apibase.com/papi/v0/properties/?contractId=contractId&groupId=groupId
 type PapiPropertySummary struct {
-	AccountId         string `json:"accountId"`
-	ContractId        string `json:"contractId"`
-	GroupId           string `json:"groupId"`
-	PropertyId        string `json:"propertyId"`
+	AccountID         string `json:"accountId"`
+	ContractID        string `json:"contractId"`
+	GroupID           string `json:"groupId"`
+	PropertyID        string `json:"propertyId"`
 	Name              string `json:"propertyName"`
 	LatestVersion     int    `json:"latestVersion"`
 	StagingVersion    int    `json:"stagingVersion"`
@@ -124,7 +124,7 @@ type PapiPropertyVersionSummary struct {
 	ProductionStatus string `json:"productionStatus"`
 	StagingStatus    string `json:"stagingStatus"`
 	Etag             string `json:"etag"`
-	ProductId        string `json:"productId"`
+	ProductID        string `json:"productId"`
 	Note             string `json:"note"`
 }
 
@@ -140,7 +140,7 @@ type PapiPropertyRules struct {
 // http://apibase.com/papi/v0/properties/propId/versions/version/rules/?contractId=contractId&groupId=groupId
 type PapiPropertyRuleSummary struct {
 	Name      string                     `json:"name"`
-	Uuid      string                     `json:"uuid"`
+	UUID      string                     `json:"uuid"`
 	Behaviors []PapiPropertyRuleBehavior `json:"behaviors"`
 }
 
@@ -163,9 +163,9 @@ type PapiActivations struct {
 // activation available at:
 // http://apibase.com/papi/v0/properties/propId/activations?contractId=contractId&groupId=groupId
 type PapiActivation struct {
-	ActivationId    string `json:"activationId"`
+	ActivationID    string `json:"activationId"`
 	PropertyName    string `json:"propertyName"`
-	PropertyId      string `json:"propertyId"`
+	PropertyID      string `json:"propertyId"`
 	PropertyVersion int    `json:"propertyVersion"`
 	Network         string `json:"network"`
 	ActivationType  string `json:"activationType"`
