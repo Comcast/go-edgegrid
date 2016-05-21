@@ -356,18 +356,18 @@ func TestPAPIPropertyVersion(t *testing.T) {
 	}
 }
 
-func TestPAPIPropertyVersionXml(t *testing.T) {
+func TestPAPIPropertyVersionXML(t *testing.T) {
 	server, client := papiTestTools(200, "<fakeXml/>")
 	defer server.Close()
 
-	xml, err := client.PropertyVersionXml("2", "propId", "contractId", "groupId")
+	xml, err := client.PropertyVersionXML("2", "propId", "contractId", "groupId")
 	if err != nil {
 		panic(err)
 	}
 	t.Log(pretty.PrettyFormat(xml))
 
 	if xml != "<fakeXml/>" {
-		t.Error("Expected PropertyVersionXml to return the correct value")
+		t.Error("Expected PropertyVersionXML to return the correct value")
 	}
 }
 

@@ -99,7 +99,7 @@ func doClientReq(c Client, method string, url string, body []byte) (*http.Respon
 	return resp, err
 }
 
-func getXml(c Client, url string) (*http.Response, error) {
+func getXML(c Client, url string) (*http.Response, error) {
 	if LogRequests() {
 		fmt.Printf("Request url: \n\t%s\n", url)
 	}

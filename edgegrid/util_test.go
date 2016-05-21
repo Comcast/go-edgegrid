@@ -12,7 +12,7 @@ import (
 
 type testClient struct {
 	Credentials *AuthCredentials
-	HttpClient  *http.Client
+	HTTPClient  *http.Client
 }
 
 func (c testClient) GetCredentials() *AuthCredentials {
@@ -20,7 +20,7 @@ func (c testClient) GetCredentials() *AuthCredentials {
 }
 
 func (c testClient) GetHTTPClient() *http.Client {
-	return c.HttpClient
+	return c.HTTPClient
 }
 
 func utilTestTools(code int, body string) (*httptest.Server, *testClient) {

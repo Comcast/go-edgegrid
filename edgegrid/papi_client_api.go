@@ -13,9 +13,9 @@ func (c *PAPIClient) Groups() ([]GroupSummary, error) {
 }
 
 // Products takes a contract ID strings returns the associated products
-func (c *PAPIClient) Products(contractId string) ([]ProductSummary, error) {
+func (c *PAPIClient) Products(contractID string) ([]ProductSummary, error) {
 	prods := &Products{}
-	err := resourceRequest(c, "GET", papiProductsEndpoint(c.GetCredentials(), contractId), nil, prods)
+	err := resourceRequest(c, "GET", papiProductsEndpoint(c.GetCredentials(), contractID), nil, prods)
 	if err != nil {
 		return []ProductSummary{}, err
 	}
@@ -24,9 +24,9 @@ func (c *PAPIClient) Products(contractId string) ([]ProductSummary, error) {
 
 // CpCodes takes a contract ID string and a group ID string and returns the
 // associated CP codes
-func (c *PAPIClient) CpCodes(contractId, groupId string) ([]CpCodeSummary, error) {
+func (c *PAPIClient) CpCodes(contractID, groupID string) ([]CpCodeSummary, error) {
 	cps := &CpCodes{}
-	err := resourceRequest(c, "GET", papiCpCodesEndpoint(c.GetCredentials(), contractId, groupId), nil, cps)
+	err := resourceRequest(c, "GET", papiCpCodesEndpoint(c.GetCredentials(), contractID, groupID), nil, cps)
 	if err != nil {
 		return []CpCodeSummary{}, err
 	}
@@ -35,9 +35,9 @@ func (c *PAPIClient) CpCodes(contractId, groupId string) ([]CpCodeSummary, error
 
 // CpCode takes a CP code ID string, a contract ID string, and a group ID string
 // and returns the associated CP code summary
-func (c *PAPIClient) CpCode(cpCodeId, contractId, groupId string) (*CpCodeSummary, error) {
+func (c *PAPIClient) CpCode(cpCodeID, contractID, groupID string) (*CpCodeSummary, error) {
 	cps := &CpCodes{}
-	err := resourceRequest(c, "GET", papiCpCodeEndpoint(c.GetCredentials(), cpCodeId, contractId, groupId), nil, cps)
+	err := resourceRequest(c, "GET", papiCpCodeEndpoint(c.GetCredentials(), cpCodeID, contractID, groupID), nil, cps)
 	if err != nil {
 		return &CpCodeSummary{}, err
 	}
@@ -46,9 +46,9 @@ func (c *PAPIClient) CpCode(cpCodeId, contractId, groupId string) (*CpCodeSummar
 
 // Hostnames takes a contract ID string and a group ID string and returns the
 // associated host name summaries
-func (c *PAPIClient) Hostnames(contractId, groupId string) ([]HostnameSummary, error) {
+func (c *PAPIClient) Hostnames(contractID, groupID string) ([]HostnameSummary, error) {
 	hostnames := &Hostnames{}
-	err := resourceRequest(c, "GET", papiHostnamesEndpoint(c.GetCredentials(), contractId, groupId), nil, hostnames)
+	err := resourceRequest(c, "GET", papiHostnamesEndpoint(c.GetCredentials(), contractID, groupID), nil, hostnames)
 	if err != nil {
 		return []HostnameSummary{}, err
 	}
@@ -57,9 +57,9 @@ func (c *PAPIClient) Hostnames(contractId, groupId string) ([]HostnameSummary, e
 
 // Hostname takes a host ID string, a contract ID string, and a group ID string and returns
 // the associated hostname
-func (c *PAPIClient) Hostname(hostId, contractId, groupId string) (HostnameSummary, error) {
+func (c *PAPIClient) Hostname(hostID, contractID, groupID string) (HostnameSummary, error) {
 	hostnames := &Hostnames{}
-	err := resourceRequest(c, "GET", papiHostnameEndpoint(c.GetCredentials(), hostId, contractId, groupId), nil, hostnames)
+	err := resourceRequest(c, "GET", papiHostnameEndpoint(c.GetCredentials(), hostID, contractID, groupID), nil, hostnames)
 	if err != nil {
 		return HostnameSummary{}, err
 	}
@@ -68,9 +68,9 @@ func (c *PAPIClient) Hostname(hostId, contractId, groupId string) (HostnameSumma
 
 // Properties takes a contract ID string and a group ID string and returns the associated
 // properties
-func (c *PAPIClient) Properties(contractId, groupId string) ([]PapiPropertySummary, error) {
+func (c *PAPIClient) Properties(contractID, groupID string) ([]PapiPropertySummary, error) {
 	props := &PapiProperties{}
-	err := resourceRequest(c, "GET", papiPropertiesEndpoint(c.GetCredentials(), contractId, groupId), nil, props)
+	err := resourceRequest(c, "GET", papiPropertiesEndpoint(c.GetCredentials(), contractID, groupID), nil, props)
 	if err != nil {
 		return []PapiPropertySummary{}, err
 	}
@@ -79,9 +79,9 @@ func (c *PAPIClient) Properties(contractId, groupId string) ([]PapiPropertySumma
 
 // Property takes a property ID string, a contract ID string, and a group ID string and returns
 // the details for the associated property
-func (c *PAPIClient) Property(propId, contractId, groupId string) (PapiPropertySummary, error) {
+func (c *PAPIClient) Property(propID, contractID, groupID string) (PapiPropertySummary, error) {
 	props := &PapiProperties{}
-	err := resourceRequest(c, "GET", papiPropertyEndpoint(c.GetCredentials(), propId, contractId, groupId), nil, props)
+	err := resourceRequest(c, "GET", papiPropertyEndpoint(c.GetCredentials(), propID, contractID, groupID), nil, props)
 	if err != nil {
 		return PapiPropertySummary{}, err
 	}
@@ -90,9 +90,9 @@ func (c *PAPIClient) Property(propId, contractId, groupId string) (PapiPropertyS
 
 // PropertyVersions takes a property ID string, a contract ID string, and a group ID string and
 // returns the associated version summaries for the property
-func (c *PAPIClient) PropertyVersions(propId, contractId, groupId string) ([]PapiPropertyVersionSummary, error) {
+func (c *PAPIClient) PropertyVersions(propID, contractID, groupID string) ([]PapiPropertyVersionSummary, error) {
 	versions := &PapiPropertyVersions{}
-	err := resourceRequest(c, "GET", papiPropertyVersionsEndpoint(c.GetCredentials(), propId, contractId, groupId), nil, versions)
+	err := resourceRequest(c, "GET", papiPropertyVersionsEndpoint(c.GetCredentials(), propID, contractID, groupID), nil, versions)
 	if err != nil {
 		return []PapiPropertyVersionSummary{}, err
 	}
@@ -101,19 +101,19 @@ func (c *PAPIClient) PropertyVersions(propId, contractId, groupId string) ([]Pap
 
 // PropertyVersion takes a version string, a property ID string, a contract ID string, and a group ID string
 // and returns the associated property version summary
-func (c *PAPIClient) PropertyVersion(version, propId, contractId, groupId string) (PapiPropertyVersionSummary, error) {
+func (c *PAPIClient) PropertyVersion(version, propID, contractID, groupID string) (PapiPropertyVersionSummary, error) {
 	versions := &PapiPropertyVersions{}
-	err := resourceRequest(c, "GET", papiPropertyVersionEndpoint(c.GetCredentials(), version, propId, contractId, groupId), nil, versions)
+	err := resourceRequest(c, "GET", papiPropertyVersionEndpoint(c.GetCredentials(), version, propID, contractID, groupID), nil, versions)
 	if err != nil {
 		return PapiPropertyVersionSummary{}, err
 	}
 	return versions.Versions.Items[0], err
 }
 
-// PropertyVersionXml takes a version string, a property ID string, a contract ID string, and a group ID string
+// PropertyVersionXML takes a version string, a property ID string, a contract ID string, and a group ID string
 // and returns the the associated property version XML as a string
-func (c *PAPIClient) PropertyVersionXml(version, propId, contractId, groupId string) (string, error) {
-	xml, err := getXml(c, papiPropertyVersionEndpoint(c.GetCredentials(), version, propId, contractId, groupId))
+func (c *PAPIClient) PropertyVersionXML(version, propID, contractID, groupID string) (string, error) {
+	xml, err := getXML(c, papiPropertyVersionEndpoint(c.GetCredentials(), version, propID, contractID, groupID))
 	if err != nil {
 		return "", err
 	}
@@ -128,9 +128,9 @@ func (c *PAPIClient) PropertyVersionXml(version, propId, contractId, groupId str
 
 // PropertyLatestVersion takes a property ID string, a contract ID string, and a group ID string and returns
 // the property version summary for the most recent property version
-func (c *PAPIClient) PropertyLatestVersion(propId, contractId, groupId string) (PapiPropertyVersionSummary, error) {
+func (c *PAPIClient) PropertyLatestVersion(propID, contractID, groupID string) (PapiPropertyVersionSummary, error) {
 	versions := &PapiPropertyVersions{}
-	err := resourceRequest(c, "GET", papiPropertyLatestVersionEndpoint(c.GetCredentials(), propId, contractId, groupId), nil, versions)
+	err := resourceRequest(c, "GET", papiPropertyLatestVersionEndpoint(c.GetCredentials(), propID, contractID, groupID), nil, versions)
 	if err != nil {
 		return PapiPropertyVersionSummary{}, err
 	}
@@ -139,9 +139,9 @@ func (c *PAPIClient) PropertyLatestVersion(propId, contractId, groupId string) (
 
 // PropertyRules takes a property ID string, a version string, and a group ID string and returns a
 // the rule summary for the associated property
-func (c *PAPIClient) PropertyRules(propId, version, contractId, groupId string) (PapiPropertyRuleSummary, error) {
+func (c *PAPIClient) PropertyRules(propID, version, contractID, groupID string) (PapiPropertyRuleSummary, error) {
 	rules := &PapiPropertyRules{}
-	err := resourceRequest(c, "GET", papiPropertyRulesEndpoint(c.GetCredentials(), propId, version, contractId, groupId), nil, rules)
+	err := resourceRequest(c, "GET", papiPropertyRulesEndpoint(c.GetCredentials(), propID, version, contractID, groupID), nil, rules)
 	if err != nil {
 		return PapiPropertyRuleSummary{}, err
 	}
@@ -150,9 +150,9 @@ func (c *PAPIClient) PropertyRules(propId, version, contractId, groupId string) 
 
 // Activations takes a property ID string, a contract ID string, and a group ID string and returns
 // the associated property activations
-func (c *PAPIClient) Activations(propId, contractId, groupId string) ([]PapiActivation, error) {
+func (c *PAPIClient) Activations(propID, contractID, groupID string) ([]PapiActivation, error) {
 	acts := &PapiActivations{}
-	err := resourceRequest(c, "GET", papiActivationsEndpoint(c.GetCredentials(), propId, contractId, groupId), nil, acts)
+	err := resourceRequest(c, "GET", papiActivationsEndpoint(c.GetCredentials(), propID, contractID, groupID), nil, acts)
 	if err != nil {
 		return []PapiActivation{}, err
 	}
