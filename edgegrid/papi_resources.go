@@ -145,7 +145,7 @@ type PapiPropertyRuleSummary struct {
 }
 
 // PapiPropertyRuleBehavior is a representation of the Akamai PAPI
-// property rule behavior associated with each property rule
+// property rule behavior associated with each property rule.
 type PapiPropertyRuleBehavior struct {
 	Name string `json:"name"`
 }

@@ -5,14 +5,14 @@ import (
 	"os"
 )
 
-// Client is an interface for an Akamai API client
+// Client is an interface for an Akamai API client.
 type Client interface {
 	GetCredentials() *AuthCredentials
 	GetHTTPClient() *http.Client
 }
 
 // AuthCredentials houses various Akamai-client-specific
-// data necessary to authenticate the Akamai API
+// data necessary to authenticate the Akamai API.
 type AuthCredentials struct {
 	AccessToken  string
 	ClientToken  string
@@ -21,7 +21,7 @@ type AuthCredentials struct {
 }
 
 // GTMClientWithCreds takes an access token string, a client token string,
-// a client secret string, and an API host string and returns a GTMClient
+// a client secret string, and an API host string and returns a GTMClient.
 func GTMClientWithCreds(accessToken, clientToken, clientSecret, apiHost string) *GTMClient {
 	return &GTMClient{
 		&AuthCredentials{accessToken, clientToken, clientSecret, apiHost},
@@ -33,7 +33,7 @@ func GTMClientWithCreds(accessToken, clientToken, clientSecret, apiHost string) 
 // a client secret string, and an API host string and returns a GTMClient
 // using the AKAMAI_EDGEGRID_ACCESS_TOKEN, AKAMAI_EDGEGRID_CLIENT_TOKEN,
 // AKAMAI_EDGEGRID_CLIENT_SECRET, and AKAMAI_EDGEGRID_HOST environment
-// variables
+// variables.
 func NewGTMClient() *GTMClient {
 	return &GTMClient{
 		NewCredentials(),
@@ -45,7 +45,7 @@ func NewGTMClient() *GTMClient {
 // a client secret string, and an API host string and returns a GTMClient
 // using the AKAMAI_EDGEGRID_ACCESS_TOKEN, AKAMAI_EDGEGRID_CLIENT_TOKEN,
 // AKAMAI_EDGEGRID_CLIENT_SECRET, and AKAMAI_EDGEGRID_HOST environment
-// variables
+// variables.
 func NewPAPIClient() *PAPIClient {
 	return &PAPIClient{
 		NewCredentials(),
@@ -54,7 +54,7 @@ func NewPAPIClient() *PAPIClient {
 }
 
 // PAPIClientWithCreds takes an access token string, a client token string,
-// a client secret string, and an API host string and returns a PAPIClient
+// a client secret string, and an API host string and returns a PAPIClient.
 func PAPIClientWithCreds(accessToken, clientToken, clientSecret, apiHost string) *PAPIClient {
 	return &PAPIClient{
 		&AuthCredentials{accessToken, clientToken, clientSecret, apiHost},
@@ -65,7 +65,7 @@ func PAPIClientWithCreds(accessToken, clientToken, clientSecret, apiHost string)
 // NewCredentials is a convenience function that returns an &AuthCredentials{}
 // using the AKAMAI_EDGEGRID_ACCESS_TOKEN, AKAMAI_EDGEGRID_CLIENT_TOKEN,
 // AKAMAI_EDGEGRID_CLIENT_SECRET, and AKAMAI_EDGEGRID_HOST environment
-// variables
+// variables.
 func NewCredentials() *AuthCredentials {
 	return &AuthCredentials{
 		os.Getenv("AKAMAI_EDGEGRID_ACCESS_TOKEN"),
@@ -76,7 +76,7 @@ func NewCredentials() *AuthCredentials {
 }
 
 // LogRequests returns true if the AK_LOG environment variable is set;
-// false if it is not
+// false if it is not.
 func LogRequests() bool {
 	return os.Getenv("AK_LOG") != ""
 }
