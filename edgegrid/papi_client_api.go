@@ -12,7 +12,7 @@ func (c *PAPIClient) Groups() ([]GroupSummary, error) {
 	return groups.Groups.Items, err
 }
 
-// Products takes a contract ID strings returns the associated products.
+// Products takes a contractID strings returns the associated products.
 func (c *PAPIClient) Products(contractID string) ([]ProductSummary, error) {
 	prods := &Products{}
 	err := resourceRequest(c, "GET", papiProductsEndpoint(c.GetCredentials(), contractID), nil, prods)
@@ -22,7 +22,7 @@ func (c *PAPIClient) Products(contractID string) ([]ProductSummary, error) {
 	return prods.Products.Items, err
 }
 
-// CpCodes takes a contract ID string and a group ID string and returns the
+// CpCodes takes a contractID string and a group ID string and returns the
 // associated CP codes.
 func (c *PAPIClient) CpCodes(contractID, groupID string) ([]CpCodeSummary, error) {
 	cps := &CpCodes{}
@@ -33,7 +33,7 @@ func (c *PAPIClient) CpCodes(contractID, groupID string) ([]CpCodeSummary, error
 	return cps.CpCodes.Items, err
 }
 
-// CpCode takes a CP code ID string, a contract ID string, and a group ID string
+// CpCode takes a cpCodeID, a contractID, and a groupID
 // and returns the associated CP code summary.
 func (c *PAPIClient) CpCode(cpCodeID, contractID, groupID string) (*CpCodeSummary, error) {
 	cps := &CpCodes{}
@@ -44,7 +44,7 @@ func (c *PAPIClient) CpCode(cpCodeID, contractID, groupID string) (*CpCodeSummar
 	return &cps.CpCodes.Items[0], err
 }
 
-// Hostnames takes a contract ID string and a group ID string and returns the
+// Hostnames takes a contractID and a groupID string and returns the
 // associated host name summaries.
 func (c *PAPIClient) Hostnames(contractID, groupID string) ([]HostnameSummary, error) {
 	hostnames := &Hostnames{}
@@ -55,7 +55,7 @@ func (c *PAPIClient) Hostnames(contractID, groupID string) ([]HostnameSummary, e
 	return hostnames.Hostnames.Items, err
 }
 
-// Hostname takes a host ID string, a contract ID string, and a group ID string and returns
+// Hostname takes a hostID, a contractID, and a groupID and returns
 // the associated hostname.
 func (c *PAPIClient) Hostname(hostID, contractID, groupID string) (HostnameSummary, error) {
 	hostnames := &Hostnames{}
@@ -66,7 +66,7 @@ func (c *PAPIClient) Hostname(hostID, contractID, groupID string) (HostnameSumma
 	return hostnames.Hostnames.Items[0], err
 }
 
-// Properties takes a contract ID string and a group ID string and returns the associated
+// Properties takes a contractID and a groupID and returns the associated
 // properties.
 func (c *PAPIClient) Properties(contractID, groupID string) ([]PapiPropertySummary, error) {
 	props := &PapiProperties{}
@@ -77,7 +77,7 @@ func (c *PAPIClient) Properties(contractID, groupID string) ([]PapiPropertySumma
 	return props.Properties.Items, err
 }
 
-// Property takes a property ID string, a contract ID string, and a group ID string and returns
+// Property takes a propertyID, a contractID, and a groupID and returns
 // the details for the associated property.
 func (c *PAPIClient) Property(propID, contractID, groupID string) (PapiPropertySummary, error) {
 	props := &PapiProperties{}
@@ -88,7 +88,7 @@ func (c *PAPIClient) Property(propID, contractID, groupID string) (PapiPropertyS
 	return props.Properties.Items[0], err
 }
 
-// PropertyVersions takes a property ID string, a contract ID string, and a group ID string and
+// PropertyVersions takes a propertyID, a contractID, and a groupID and
 // returns the associated version summaries for the property.
 func (c *PAPIClient) PropertyVersions(propID, contractID, groupID string) ([]PapiPropertyVersionSummary, error) {
 	versions := &PapiPropertyVersions{}
@@ -99,7 +99,7 @@ func (c *PAPIClient) PropertyVersions(propID, contractID, groupID string) ([]Pap
 	return versions.Versions.Items, err
 }
 
-// PropertyVersion takes a version string, a property ID string, a contract ID string, and a group ID string
+// PropertyVersion takes a version, a propertyID, a contractID, and a groupID
 // and returns the associated property version summary.
 func (c *PAPIClient) PropertyVersion(version, propID, contractID, groupID string) (PapiPropertyVersionSummary, error) {
 	versions := &PapiPropertyVersions{}
@@ -110,7 +110,7 @@ func (c *PAPIClient) PropertyVersion(version, propID, contractID, groupID string
 	return versions.Versions.Items[0], err
 }
 
-// PropertyVersionXML takes a version string, a property ID string, a contract ID string, and a group ID string
+// PropertyVersionXML takes a version, a propertyID, a contractID, and a groupID
 // and returns the the associated property version XML as a string.
 func (c *PAPIClient) PropertyVersionXML(version, propID, contractID, groupID string) (string, error) {
 	xml, err := getXML(c, papiPropertyVersionEndpoint(c.GetCredentials(), version, propID, contractID, groupID))
@@ -126,7 +126,7 @@ func (c *PAPIClient) PropertyVersionXML(version, propID, contractID, groupID str
 	return string(body), nil
 }
 
-// PropertyLatestVersion takes a property ID string, a contract ID string, and a group ID string and returns
+// PropertyLatestVersion takes a propertyID, a contractID, and a groupID and returns
 // the property version summary for the most recent property version.
 func (c *PAPIClient) PropertyLatestVersion(propID, contractID, groupID string) (PapiPropertyVersionSummary, error) {
 	versions := &PapiPropertyVersions{}
@@ -137,7 +137,7 @@ func (c *PAPIClient) PropertyLatestVersion(propID, contractID, groupID string) (
 	return versions.Versions.Items[0], err
 }
 
-// PropertyRules takes a property ID string, a version string, and a group ID string and returns a
+// PropertyRules takes a propertyID string, a version, and a groupID and returns a
 // the rule summary for the associated property.
 func (c *PAPIClient) PropertyRules(propID, version, contractID, groupID string) (PapiPropertyRuleSummary, error) {
 	rules := &PapiPropertyRules{}
@@ -148,7 +148,7 @@ func (c *PAPIClient) PropertyRules(propID, version, contractID, groupID string) 
 	return rules.Rules, err
 }
 
-// Activations takes a property ID string, a contract ID string, and a group ID string and returns
+// Activations takes a propertyID, a contractID, and a groupID and returns
 // the associated property activations.
 func (c *PAPIClient) Activations(propID, contractID, groupID string) ([]PapiActivation, error) {
 	acts := &PapiActivations{}

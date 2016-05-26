@@ -32,7 +32,7 @@ func (c *GTMClient) DomainStatus(name string) (*ResourceStatus, error) {
 	return status, err
 }
 
-// DomainCreate takes an Akamai GTM domain name and a domain type and creates
+// DomainCreate takes an Akamai GTM domain name and a domainType and creates
 // the domain via the Akamai GTM API.
 func (c *GTMClient) DomainCreate(name string, domainType string) (*DomainResponse, error) {
 	payload := map[string]string{
@@ -49,7 +49,7 @@ func (c *GTMClient) DomainCreate(name string, domainType string) (*DomainRespons
 	return createdDomain, err
 }
 
-// DomainUpdate takes a Domain and updates its details via the Akamai GTM API.
+// DomainUpdate takes a domain and updates its details via the Akamai GTM API.
 func (c *GTMClient) DomainUpdate(domain *Domain) (*DomainResponse, error) {
 	jsonRequest, err := json.Marshal(domain)
 	if err != nil {
@@ -60,7 +60,7 @@ func (c *GTMClient) DomainUpdate(domain *Domain) (*DomainResponse, error) {
 	return updatedDomain, err
 }
 
-// DataCenters takes an Akamai GTM domain name string and returns a []DataCenter
+// DataCenters takes an Akamai GTM domain name and returns a []DataCenter
 // representing the datacenters associated with the domain.
 func (c *GTMClient) DataCenters(domain string) ([]DataCenter, error) {
 	dcs := &DataCenters{}
@@ -71,7 +71,7 @@ func (c *GTMClient) DataCenters(domain string) ([]DataCenter, error) {
 	return dcs.Items, err
 }
 
-// DataCenterCreate takes an Akamai GTM domain name string and a DataCenter and
+// DataCenterCreate takes an Akamai GTM domain name and a dc and
 // creates the DataCenter via the Akamai GTM API.
 func (c *GTMClient) DataCenterCreate(domain string, dc *DataCenter) (*DataCenterResponse, error) {
 	jsonRequest, err := json.Marshal(dc)
@@ -83,7 +83,7 @@ func (c *GTMClient) DataCenterCreate(domain string, dc *DataCenter) (*DataCenter
 	return resource, err
 }
 
-// DataCenter takes an Akamai GTM domain name string and a datacenter ID and
+// DataCenter takes an Akamai GTM domain name and a datacenter id and
 // returns the DataCenter for the given ID.
 func (c *GTMClient) DataCenter(domain string, id int) (*DataCenter, error) {
 	dc := &DataCenter{}
@@ -91,7 +91,7 @@ func (c *GTMClient) DataCenter(domain string, id int) (*DataCenter, error) {
 	return dc, err
 }
 
-// DataCenterUpdate takes an Akamai GTM domain name string and a DataCenter and
+// DataCenterUpdate takes an Akamai GTM domain name and a dc and
 // updates the DataCenter details via the Akamai GTM API.
 func (c *GTMClient) DataCenterUpdate(domain string, dc *DataCenter) (*DataCenterResponse, error) {
 	jsonRequest, err := json.Marshal(dc)
@@ -103,7 +103,7 @@ func (c *GTMClient) DataCenterUpdate(domain string, dc *DataCenter) (*DataCenter
 	return resource, err
 }
 
-// DataCenterByName takes an Akamai GTM domain name string and a datacenter name string
+// DataCenterByName takes an Akamai GTM domain name and a datacenter name
 // and returns the matching DataCenter.
 func (c *GTMClient) DataCenterByName(domain string, name string) (*DataCenter, error) {
 	dcs, err := c.DataCenters(domain)
@@ -119,7 +119,7 @@ func (c *GTMClient) DataCenterByName(domain string, name string) (*DataCenter, e
 	return &DataCenter{}, fmt.Errorf("DataCenter named: %s not found in domain: %s", name, domain)
 }
 
-// DataCenterDelete takes an Akamai GTM domain name string and a datacenter ID and
+// DataCenterDelete takes an Akamai GTM domain name and a datacenter id and
 // deletes the matching datacenter via the Akamai GTM API.
 func (c *GTMClient) DataCenterDelete(domain string, id int) error {
 	resp, err := doClientReq(c, "DELETE", dcEndpoint(c.GetCredentials(), domain, id), nil)
@@ -133,7 +133,7 @@ func (c *GTMClient) DataCenterDelete(domain string, id int) error {
 	return err
 }
 
-// Properties takes an Akamai GTM domain name string and returns the Akamai GTM properties
+// Properties takes an Akamai GTM domain name and returns the Akamai GTM properties
 // associated with the domain.
 func (c *GTMClient) Properties(domain string) (*Properties, error) {
 	props := &Properties{}
@@ -141,7 +141,7 @@ func (c *GTMClient) Properties(domain string) (*Properties, error) {
 	return props, err
 }
 
-// PropertiesSorted sorted takes an Akamai GTM domain name string and returns the Akamai GTM
+// PropertiesSorted sorted takes an Akamai GTM domain name and returns the Akamai GTM
 // properties associated with the domain name, sorted by their names.
 func (c *GTMClient) PropertiesSorted(domain string) (*Properties, error) {
 	props, err := c.Properties(domain)
@@ -149,7 +149,7 @@ func (c *GTMClient) PropertiesSorted(domain string) (*Properties, error) {
 	return props, err
 }
 
-// Property takes an Akamai GTM domain name string and a property name string
+// Property takes an Akamai GTM domain name and a property name
 // and returns the matching Akamai GTM property.
 func (c *GTMClient) Property(domain, property string) (*Property, error) {
 	prop := &Property{}
@@ -157,7 +157,7 @@ func (c *GTMClient) Property(domain, property string) (*Property, error) {
 	return prop, err
 }
 
-// PropertyCreate takes an Akamai GTM domain name string and a Property and creates
+// PropertyCreate takes an Akamai GTM domain name and a property and creates
 // the Property via the Akamai GTM API.
 func (c *GTMClient) PropertyCreate(domain string, property *Property) (*PropertyResponse, error) {
 	jsonRequest, err := json.Marshal(property)
@@ -170,13 +170,13 @@ func (c *GTMClient) PropertyCreate(domain string, property *Property) (*Property
 	return resource, err
 }
 
-// PropertyUpdate takes an Akamai GTM domain name string and a Property and updates
-// the Property details via the Akamai GTM API.
+// PropertyUpdate takes an Akamai GTM domain name and a property and updates
+// the property details via the Akamai GTM API.
 func (c *GTMClient) PropertyUpdate(domain string, property *Property) (*PropertyResponse, error) {
 	return c.PropertyCreate(domain, property)
 }
 
-// PropertyDelete takes an Akamai GTM domain name string and a property name string
+// PropertyDelete takes an Akamai GTM domain name and a property name
 // and deletes the matching Akamai GTM property via the Akamai GTM API.
 func (c *GTMClient) PropertyDelete(domain string, property string) (bool, error) {
 	url := propertyEndpoint(c.GetCredentials(), domain, property)

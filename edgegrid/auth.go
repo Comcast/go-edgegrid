@@ -14,7 +14,7 @@ import (
 )
 
 // AuthParams is used to house various request details such that
-// the AuthParams{} can be passed to Auth to sign using the
+// the AuthParams can be passed to Auth to sign using the
 // Akamai {OPEN} EdgeGrid Authentication scheme.
 type AuthParams struct {
 	req           *http.Request
@@ -26,9 +26,8 @@ type AuthParams struct {
 	headersToSign []string
 }
 
-// NewAuthParams is a convenience function for generating
-// an AuthParams{} from an *http.Request, acccess token string, client
-// token string, and a client secret string.
+// NewAuthParams returns an AuthParams generated from req, accessToken,
+// clientToken, and clientSecret
 func NewAuthParams(req *http.Request, accessToken, clientToken, clientSecret string) AuthParams {
 	return AuthParams{
 		req,
@@ -41,7 +40,7 @@ func NewAuthParams(req *http.Request, accessToken, clientToken, clientSecret str
 	}
 }
 
-// Auth takes an AuthParams{} and returns a string that can be
+// Auth takes prm and returns a string that can be
 // used as the `Authorization` header in making Akamai API requests.
 //
 // The string returned by Auth conforms to the
