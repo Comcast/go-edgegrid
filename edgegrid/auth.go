@@ -27,7 +27,7 @@ type AuthParams struct {
 }
 
 // NewAuthParams returns an AuthParams generated from req, accessToken,
-// clientToken, and clientSecret
+// clientToken, and clientSecret.
 func NewAuthParams(req *http.Request, accessToken, clientToken, clientSecret string) AuthParams {
 	return AuthParams{
 		req,

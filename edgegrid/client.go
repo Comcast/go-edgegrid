@@ -60,7 +60,7 @@ func PAPIClientWithCreds(accessToken, clientToken, clientSecret, apiHost string)
 	}
 }
 
-// NewCredentials an AuthCredentials
+// NewCredentials returns an AuthCredentials
 // using the AKAMAI_EDGEGRID_ACCESS_TOKEN, AKAMAI_EDGEGRID_CLIENT_TOKEN,
 // AKAMAI_EDGEGRID_CLIENT_SECRET, and AKAMAI_EDGEGRID_HOST environment
 // variables.
