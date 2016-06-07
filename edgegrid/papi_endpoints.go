@@ -4,7 +4,7 @@ const papiPath = "/papi/v0/"
 
 func papiBase(c *AuthCredentials) string {
 	return concat([]string{
-		c.ApiHost,
+		c.APIHost,
 		papiPath,
 	})
 }
@@ -16,54 +16,54 @@ func papiGroupsEndpoint(c *AuthCredentials) string {
 	})
 }
 
-func papiProductsEndpoint(c *AuthCredentials, contractId string) string {
+func papiProductsEndpoint(c *AuthCredentials, contractID string) string {
 	return concat([]string{
 		papiBase(c),
 		"products?contractId=",
-		contractId,
+		contractID,
 	})
 }
 
-func papiCpCodesEndpoint(c *AuthCredentials, contractId, groupId string) string {
+func papiCpCodesEndpoint(c *AuthCredentials, contractID, groupID string) string {
 	return concat([]string{
 		papiBase(c),
 		"cpcodes/",
-		papiQuery(contractId, groupId),
+		papiQuery(contractID, groupID),
 	})
 }
 
-func papiCpCodeEndpoint(c *AuthCredentials, cpCodeId, contractId, groupId string) string {
+func papiCpCodeEndpoint(c *AuthCredentials, cpCodeID, contractID, groupID string) string {
 	return concat([]string{
 		papiBase(c),
 		"cpcodes/",
-		cpCodeId,
-		papiQuery(contractId, groupId),
+		cpCodeID,
+		papiQuery(contractID, groupID),
 	})
 }
 
-func papiQuery(contractId, groupId string) string {
+func papiQuery(contractID, groupID string) string {
 	return concat([]string{
 		"?contractId=",
-		contractId,
+		contractID,
 		"&groupId=",
-		groupId,
+		groupID,
 	})
 }
 
-func papiHostnamesEndpoint(c *AuthCredentials, contractId, groupId string) string {
+func papiHostnamesEndpoint(c *AuthCredentials, contractID, groupID string) string {
 	return concat([]string{
 		papiBase(c),
 		"edgehostnames",
-		papiQuery(contractId, groupId),
+		papiQuery(contractID, groupID),
 	})
 }
 
-func papiHostnameEndpoint(c *AuthCredentials, hostId, contractId, groupId string) string {
+func papiHostnameEndpoint(c *AuthCredentials, hostID, contractID, groupID string) string {
 	return concat([]string{
 		papiBase(c),
 		"edgehostnames/",
-		hostId,
-		papiQuery(contractId, groupId),
+		hostID,
+		papiQuery(contractID, groupID),
 	})
 }
 
@@ -74,76 +74,76 @@ func papiPropertiesBase(c *AuthCredentials) string {
 	})
 }
 
-func papiPropertiesEndpoint(c *AuthCredentials, contractId, groupId string) string {
+func papiPropertiesEndpoint(c *AuthCredentials, contractID, groupID string) string {
 	return concat([]string{
 		papiPropertiesBase(c),
-		papiQuery(contractId, groupId),
+		papiQuery(contractID, groupID),
 	})
 }
 
-func papiPropertyBase(c *AuthCredentials, propId string) string {
+func papiPropertyBase(c *AuthCredentials, propID string) string {
 	return concat([]string{
 		papiPropertiesBase(c),
-		propId,
+		propID,
 	})
 }
 
-func papiPropertyEndpoint(c *AuthCredentials, propId, contractId, groupId string) string {
+func papiPropertyEndpoint(c *AuthCredentials, propID, contractID, groupID string) string {
 	return concat([]string{
-		papiPropertyBase(c, propId),
-		papiQuery(contractId, groupId),
+		papiPropertyBase(c, propID),
+		papiQuery(contractID, groupID),
 	})
 }
 
-func papiPropertyVersionsBase(c *AuthCredentials, propId, contractId, groupId string) string {
+func papiPropertyVersionsBase(c *AuthCredentials, propID, contractID, groupID string) string {
 	return concat([]string{
-		papiPropertyBase(c, propId),
+		papiPropertyBase(c, propID),
 		"/versions",
 	})
 }
 
-func papiPropertyVersionsEndpoint(c *AuthCredentials, propId, contractId, groupId string) string {
+func papiPropertyVersionsEndpoint(c *AuthCredentials, propID, contractID, groupID string) string {
 	return concat([]string{
-		papiPropertyVersionsBase(c, propId, contractId, groupId),
-		papiQuery(contractId, groupId),
+		papiPropertyVersionsBase(c, propID, contractID, groupID),
+		papiQuery(contractID, groupID),
 	})
 }
 
-func papiPropertyVersionBase(c *AuthCredentials, version, propId, contractId, groupId string) string {
+func papiPropertyVersionBase(c *AuthCredentials, version, propID, contractID, groupID string) string {
 	return concat([]string{
-		papiPropertyVersionsBase(c, propId, contractId, groupId),
+		papiPropertyVersionsBase(c, propID, contractID, groupID),
 		"/",
 		version,
 	})
 }
 
-func papiPropertyVersionEndpoint(c *AuthCredentials, version, propId, contractId, groupId string) string {
+func papiPropertyVersionEndpoint(c *AuthCredentials, version, propID, contractID, groupID string) string {
 	return concat([]string{
-		papiPropertyVersionBase(c, version, propId, contractId, groupId),
-		papiQuery(contractId, groupId),
+		papiPropertyVersionBase(c, version, propID, contractID, groupID),
+		papiQuery(contractID, groupID),
 	})
 }
 
-func papiPropertyLatestVersionEndpoint(c *AuthCredentials, propId, contractId, groupId string) string {
+func papiPropertyLatestVersionEndpoint(c *AuthCredentials, propID, contractID, groupID string) string {
 	return concat([]string{
-		papiPropertyVersionsBase(c, propId, contractId, groupId),
+		papiPropertyVersionsBase(c, propID, contractID, groupID),
 		"/latest",
-		papiQuery(contractId, groupId),
+		papiQuery(contractID, groupID),
 	})
 }
 
-func papiPropertyRulesEndpoint(c *AuthCredentials, propId, version, contractId, groupId string) string {
+func papiPropertyRulesEndpoint(c *AuthCredentials, propID, version, contractID, groupID string) string {
 	return concat([]string{
-		papiPropertyVersionBase(c, version, propId, contractId, groupId),
+		papiPropertyVersionBase(c, version, propID, contractID, groupID),
 		"/rules/",
-		papiQuery(contractId, groupId),
+		papiQuery(contractID, groupID),
 	})
 }
 
-func papiActivationsEndpoint(c *AuthCredentials, propId, contractId, groupId string) string {
+func papiActivationsEndpoint(c *AuthCredentials, propID, contractID, groupID string) string {
 	return concat([]string{
-		papiPropertyBase(c, propId),
+		papiPropertyBase(c, propID),
 		"/activations",
-		papiQuery(contractId, groupId),
+		papiQuery(contractID, groupID),
 	})
 }

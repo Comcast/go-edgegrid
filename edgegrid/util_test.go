@@ -12,15 +12,15 @@ import (
 
 type testClient struct {
 	Credentials *AuthCredentials
-	HttpClient  *http.Client
+	HTTPClient  *http.Client
 }
 
 func (c testClient) GetCredentials() *AuthCredentials {
 	return c.Credentials
 }
 
-func (c testClient) GetHttpClient() *http.Client {
-	return c.HttpClient
+func (c testClient) GetHTTPClient() *http.Client {
+	return c.HTTPClient
 }
 
 func utilTestTools(code int, body string) (*httptest.Server, *testClient) {
@@ -54,7 +54,7 @@ func TestAuthenticate(t *testing.T) {
 	server, client := utilTestTools(200, "hello world")
 	defer server.Close()
 
-	req, _ := http.NewRequest("GET", client.GetCredentials().ApiHost, bytes.NewBuffer(body))
+	req, _ := http.NewRequest("GET", client.GetCredentials().APIHost, bytes.NewBuffer(body))
 
 	authenticatedReq := authenticate(client, req)
 	header := authenticatedReq.Header.Get("Authorization")
@@ -84,7 +84,7 @@ func TestDoClientReq(t *testing.T) {
 	server, client := utilTestTools(200, "hello world")
 	defer server.Close()
 
-	resp, err := doClientReq(client, "GET", client.GetCredentials().ApiHost, nil)
+	resp, err := doClientReq(client, "GET", client.GetCredentials().APIHost, nil)
 	if err != nil {
 		t.Error("test doClientReq failed")
 	}

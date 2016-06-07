@@ -57,7 +57,7 @@ func resourceRequest(c Client, method string, url string, body []byte, responseS
 	req.Header.Add("Content-Type", "application/json")
 
 	authReq := authenticate(c, req)
-	resp, err := c.GetHttpClient().Do(authReq)
+	resp, err := c.GetHTTPClient().Do(authReq)
 
 	bodyContents, err := ioutil.ReadAll(resp.Body)
 	if LogRequests() {
@@ -94,12 +94,12 @@ func doClientReq(c Client, method string, url string, body []byte) (*http.Respon
 	req.Header.Add("Content-Type", "application/json")
 
 	authReq := authenticate(c, req)
-	resp, err := c.GetHttpClient().Do(authReq)
+	resp, err := c.GetHTTPClient().Do(authReq)
 
 	return resp, err
 }
 
-func getXml(c Client, url string) (*http.Response, error) {
+func getXML(c Client, url string) (*http.Response, error) {
 	if LogRequests() {
 		fmt.Printf("Request url: \n\t%s\n", url)
 	}
@@ -110,7 +110,7 @@ func getXml(c Client, url string) (*http.Response, error) {
 
 	req.Header.Add("Accept", "text/xml")
 	authReq := authenticate(c, req)
-	resp, err := c.GetHttpClient().Do(authReq)
+	resp, err := c.GetHTTPClient().Do(authReq)
 
 	return resp, err
 }

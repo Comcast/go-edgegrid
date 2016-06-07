@@ -38,7 +38,7 @@ func papiTestTools(code int, body string) (*httptest.Server, *PAPIClient) {
 }
 
 func TestPAPIGroups(t *testing.T) {
-	server, client := papiTestTools(200, groupsJson)
+	server, client := papiTestTools(200, groupsJSON)
 	defer server.Close()
 
 	groups, err := client.Groups()
@@ -54,14 +54,14 @@ func TestPAPIGroups(t *testing.T) {
 		if g.Name == "" {
 			t.Error("Expected Group Name to have a value")
 		}
-		if g.GroupId == "" {
+		if g.GroupID == "" {
 			t.Error("Expected Group ID to have a value")
 		}
 	}
 }
 
 func TestPAPIProducts(t *testing.T) {
-	server, client := papiTestTools(200, productsJson)
+	server, client := papiTestTools(200, productsJSON)
 	defer server.Close()
 
 	prods, err := client.Products("contractId")
@@ -77,14 +77,14 @@ func TestPAPIProducts(t *testing.T) {
 		if p.Name == "" {
 			t.Error("Expected Product Name to have a value")
 		}
-		if p.ProductId == "" {
+		if p.ProductID == "" {
 			t.Error("Expected Product ID to have a value")
 		}
 	}
 }
 
 func TestPAPICpCodes(t *testing.T) {
-	server, client := papiTestTools(200, cpCodesJson)
+	server, client := papiTestTools(200, cpCodesJSON)
 	defer server.Close()
 
 	cps, err := client.CpCodes("contractId", "groupId")
@@ -94,26 +94,26 @@ func TestPAPICpCodes(t *testing.T) {
 	t.Log(pretty.PrettyFormat(cps))
 
 	if len(cps) != 1 {
-		t.Error("Expected 1 CpCodes")
+		t.Error("Expected 1 CPCodes")
 	}
 
 	c := cps[0]
 	if c.Name != "someName" {
-		t.Error("Expected CpCode Name to have a value")
+		t.Error("Expected CPCode Name to have a value")
 	}
-	if c.CpCodeId != "someCodeId" {
+	if c.CPCodeID != "someCodeId" {
 		t.Error("Expected CpCode ID to have a value")
 	}
-	if c.ProductIds[0] != "someId" {
-		t.Error("Expected CpCode ProductIds to have a value")
+	if c.ProductIDs[0] != "someId" {
+		t.Error("Expected CPCode ProductIDs to have a value")
 	}
 	if c.CreatedDate != "someDate" {
-		t.Error("Expected CpCode CreatedDate to have a value")
+		t.Error("Expected CPCode CreatedDate to have a value")
 	}
 }
 
 func TestPAPICpCode(t *testing.T) {
-	server, client := papiTestTools(200, cpCodesJson)
+	server, client := papiTestTools(200, cpCodesJSON)
 	defer server.Close()
 
 	c, err := client.CpCode("cpCodeId", "contractId", "groupId")
@@ -125,11 +125,11 @@ func TestPAPICpCode(t *testing.T) {
 	if c.Name != "someName" {
 		t.Error("Expected CpCode Name to have a value")
 	}
-	if c.CpCodeId != "someCodeId" {
-		t.Error("Expected CpCode ID to have a value")
+	if c.CPCodeID != "someCodeId" {
+		t.Error("Expected CPCode ID to have a value")
 	}
-	if c.ProductIds[0] != "someId" {
-		t.Error("Expected CpCode ProductIds to have a value")
+	if c.ProductIDs[0] != "someId" {
+		t.Error("Expected CpCode ProductIDs to have a value")
 	}
 	if c.CreatedDate != "someDate" {
 		t.Error("Expected CpCode CreatedDate to have a value")
@@ -137,7 +137,7 @@ func TestPAPICpCode(t *testing.T) {
 }
 
 func TestPAPIHostnames(t *testing.T) {
-	server, client := papiTestTools(200, hostnamesJson)
+	server, client := papiTestTools(200, hostnamesJSON)
 	defer server.Close()
 
 	hostnames, err := client.Hostnames("contractId", "groupId")
@@ -152,7 +152,7 @@ func TestPAPIHostnames(t *testing.T) {
 
 	h := hostnames[0]
 
-	if h.EdgeHostnameId != "hostId1" {
+	if h.EdgeHostnameID != "hostId1" {
 		t.Error("Expected Hostname.ID to have correct value")
 	}
 	if h.DomainPrefix != "foo.com" {
@@ -161,7 +161,7 @@ func TestPAPIHostnames(t *testing.T) {
 	if h.DomainSuffix != "edge.net" {
 		t.Error("Expected Hostname.DomainSuffix to have correct value")
 	}
-	if h.IpVersionBehavior != "IPV4" {
+	if h.IPVersionBehavior != "IPV4" {
 		t.Error("Expected Hostname.IPVersionBehavior to have correct value")
 	}
 	if h.Secure != false {
@@ -173,7 +173,7 @@ func TestPAPIHostnames(t *testing.T) {
 }
 
 func TestPAPIHostname(t *testing.T) {
-	server, client := papiTestTools(200, hostnamesJson)
+	server, client := papiTestTools(200, hostnamesJSON)
 	defer server.Close()
 
 	h, err := client.Hostname("hostId", "contractId", "groupId")
@@ -182,7 +182,7 @@ func TestPAPIHostname(t *testing.T) {
 	}
 	t.Log(pretty.PrettyFormat(h))
 
-	if h.EdgeHostnameId != "hostId1" {
+	if h.EdgeHostnameID != "hostId1" {
 		t.Error("Expected Hostname.ID to have correct value")
 	}
 	if h.DomainPrefix != "foo.com" {
@@ -191,7 +191,7 @@ func TestPAPIHostname(t *testing.T) {
 	if h.DomainSuffix != "edge.net" {
 		t.Error("Expected Hostname.DomainSuffix to have correct value")
 	}
-	if h.IpVersionBehavior != "IPV4" {
+	if h.IPVersionBehavior != "IPV4" {
 		t.Error("Expected Hostname.IPVersionBehavior to have correct value")
 	}
 	if h.Secure != false {
@@ -203,7 +203,7 @@ func TestPAPIHostname(t *testing.T) {
 }
 
 func TestPAPIProperties(t *testing.T) {
-	server, client := papiTestTools(200, propertiesJson)
+	server, client := papiTestTools(200, propertiesJSON)
 	defer server.Close()
 
 	ps, err := client.Properties("contractId", "groupId")
@@ -214,16 +214,16 @@ func TestPAPIProperties(t *testing.T) {
 
 	p := ps[0]
 
-	if p.PropertyId != "propertyId" {
-		t.Error("Expected PropertySummary.PropertyId to have correct value")
+	if p.PropertyID != "propertyId" {
+		t.Error("Expected PropertySummary.PropertyID to have correct value")
 	}
-	if p.AccountId != "accountId" {
+	if p.AccountID != "accountId" {
 		t.Error("Expected PropertySummary.AccountId to have correct value")
 	}
-	if p.GroupId != "groupid" {
-		t.Error("Expected PropertySummary.GroupId to have correct value")
+	if p.GroupID != "groupid" {
+		t.Error("Expected PropertySummary.GroupID to have correct value")
 	}
-	if p.ContractId != "contractId" {
+	if p.ContractID != "contractId" {
 		t.Error("Expected PropertySummary.ContractId to have correct value")
 	}
 	if p.Name != "m.example.com" {
@@ -244,7 +244,7 @@ func TestPAPIProperties(t *testing.T) {
 }
 
 func TestPAPIProperty(t *testing.T) {
-	server, client := papiTestTools(200, propertiesJson)
+	server, client := papiTestTools(200, propertiesJSON)
 	defer server.Close()
 
 	p, err := client.Property("propId", "contractId", "groupId")
@@ -253,17 +253,17 @@ func TestPAPIProperty(t *testing.T) {
 	}
 	t.Log(pretty.PrettyFormat(p))
 
-	if p.PropertyId != "propertyId" {
-		t.Error("Expected PropertySummary.PropertyId to have correct value")
+	if p.PropertyID != "propertyId" {
+		t.Error("Expected PropertySummary.PropertyID to have correct value")
 	}
-	if p.AccountId != "accountId" {
-		t.Error("Expected PropertySummary.AccountId to have correct value")
+	if p.AccountID != "accountId" {
+		t.Error("Expected PropertySummary.AccountID to have correct value")
 	}
-	if p.GroupId != "groupid" {
-		t.Error("Expected PropertySummary.GroupId to have correct value")
+	if p.GroupID != "groupid" {
+		t.Error("Expected PropertySummary.GroupID to have correct value")
 	}
-	if p.ContractId != "contractId" {
-		t.Error("Expected PropertySummary.ContractId to have correct value")
+	if p.ContractID != "contractId" {
+		t.Error("Expected PropertySummary.ContractID to have correct value")
 	}
 	if p.Name != "m.example.com" {
 		t.Error("Expected PropertySummary.Name to have correct value")
@@ -283,7 +283,7 @@ func TestPAPIProperty(t *testing.T) {
 }
 
 func TestPAPIPropertyVersions(t *testing.T) {
-	server, client := papiTestTools(200, propertyVersionsJson)
+	server, client := papiTestTools(200, propertyVersionsJSON)
 	defer server.Close()
 
 	vs, err := client.PropertyVersions("propId", "contractId", "groupId")
@@ -294,8 +294,8 @@ func TestPAPIPropertyVersions(t *testing.T) {
 
 	v := vs[0]
 
-	if v.ProductId != "productId" {
-		t.Error("Expected PropertyVersionSummary.ProductId to have correct value")
+	if v.ProductID != "productId" {
+		t.Error("Expected PropertyVersionSummary.ProductID to have correct value")
 	}
 	if v.PropertyVersion != 2 {
 		t.Error("Expected PropertyVersionSummary.PropertyVersion to have correct value")
@@ -321,7 +321,7 @@ func TestPAPIPropertyVersions(t *testing.T) {
 }
 
 func TestPAPIPropertyVersion(t *testing.T) {
-	server, client := papiTestTools(200, propertyVersionsJson)
+	server, client := papiTestTools(200, propertyVersionsJSON)
 	defer server.Close()
 
 	v, err := client.PropertyVersion("2", "propId", "contractId", "groupId")
@@ -330,8 +330,8 @@ func TestPAPIPropertyVersion(t *testing.T) {
 	}
 	t.Log(pretty.PrettyFormat(v))
 
-	if v.ProductId != "productId" {
-		t.Error("Expected PropertyVersionSummary.ProductId to have correct value")
+	if v.ProductID != "productId" {
+		t.Error("Expected PropertyVersionSummary.ProductID to have correct value")
 	}
 	if v.PropertyVersion != 2 {
 		t.Error("Expected PropertyVersionSummary.PropertyVersion to have correct value")
@@ -356,23 +356,23 @@ func TestPAPIPropertyVersion(t *testing.T) {
 	}
 }
 
-func TestPAPIPropertyVersionXml(t *testing.T) {
+func TestPAPIPropertyVersionXML(t *testing.T) {
 	server, client := papiTestTools(200, "<fakeXml/>")
 	defer server.Close()
 
-	xml, err := client.PropertyVersionXml("2", "propId", "contractId", "groupId")
+	xml, err := client.PropertyVersionXML("2", "propId", "contractId", "groupId")
 	if err != nil {
 		panic(err)
 	}
 	t.Log(pretty.PrettyFormat(xml))
 
 	if xml != "<fakeXml/>" {
-		t.Error("Expected PropertyVersionXml to return the correct value")
+		t.Error("Expected PropertyVersionXML to return the correct value")
 	}
 }
 
 func TestPAPIPropertyLatestVersion(t *testing.T) {
-	server, client := papiTestTools(200, propertyVersionsJson)
+	server, client := papiTestTools(200, propertyVersionsJSON)
 	defer server.Close()
 
 	v, err := client.PropertyLatestVersion("propId", "contractId", "groupId")
@@ -381,8 +381,8 @@ func TestPAPIPropertyLatestVersion(t *testing.T) {
 	}
 	t.Log(pretty.PrettyFormat(v))
 
-	if v.ProductId != "productId" {
-		t.Error("Expected PropertyVersionSummary.ProductId to have correct value")
+	if v.ProductID != "productId" {
+		t.Error("Expected PropertyVersionSummary.ProductID to have correct value")
 	}
 	if v.PropertyVersion != 2 {
 		t.Error("Expected PropertyVersionSummary.PropertyVersion to have correct value")
@@ -408,7 +408,7 @@ func TestPAPIPropertyLatestVersion(t *testing.T) {
 }
 
 func TestPAPIPropertyRules(t *testing.T) {
-	server, client := papiTestTools(200, propertyRulesJson)
+	server, client := papiTestTools(200, propertyRulesJSON)
 	defer server.Close()
 
 	r, err := client.PropertyRules("propId", "version", "contractId", "groupId")
@@ -420,13 +420,13 @@ func TestPAPIPropertyRules(t *testing.T) {
 	if r.Name != "default" {
 		t.Error("Expected PropertyRuleSummary.Name to have correct value")
 	}
-	if r.Uuid != "some-uuid" {
-		t.Error("Expected PropertyRuleSummary.Uuid to have correct value")
+	if r.UUID != "some-uuid" {
+		t.Error("Expected PropertyRuleSummary.UUID to have correct value")
 	}
 }
 
 func TestPAPIActivations(t *testing.T) {
-	server, client := papiTestTools(200, activationsJson)
+	server, client := papiTestTools(200, activationsJSON)
 	defer server.Close()
 
 	r, err := client.Activations("propId", "contractId", "groupId")
@@ -440,11 +440,11 @@ func TestPAPIActivations(t *testing.T) {
 	if act.PropertyName != "example.com" {
 		t.Error("Expected PapiActivation.PropertyName to have correct value")
 	}
-	if act.ActivationId != "123" {
-		t.Error("Expected PapiActivation.ActivationId to have correct value")
+	if act.ActivationID != "123" {
+		t.Error("Expected PapiActivation.ActivationID to have correct value")
 	}
-	if act.PropertyId != "propId" {
-		t.Error("Expected PapiActivation.PropertyId to have correct value")
+	if act.PropertyID != "propId" {
+		t.Error("Expected PapiActivation.PropertyID to have correct value")
 	}
 	if act.PropertyVersion != 1 {
 		t.Error("Expected PapiActivation.PropertyVersion to have correct value")

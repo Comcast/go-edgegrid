@@ -38,7 +38,7 @@ func gtmTestTools(code int, body string) (*httptest.Server, *GTMClient) {
 }
 
 func TestDomains(t *testing.T) {
-	server, client := gtmTestTools(200, domainsJson)
+	server, client := gtmTestTools(200, domainsJSON)
 	defer server.Close()
 
 	domains, _ := client.Domains()
@@ -61,7 +61,7 @@ func TestDomains(t *testing.T) {
 }
 
 func TestDomain(t *testing.T) {
-	server, client := gtmTestTools(200, domainJson)
+	server, client := gtmTestTools(200, domainJSON)
 	defer server.Close()
 
 	domain, _ := client.Domain("example.akadns.net")
@@ -76,7 +76,7 @@ func TestDomain(t *testing.T) {
 }
 
 func TestDomainStatus(t *testing.T) {
-	server, client := gtmTestTools(200, domainStatusJson)
+	server, client := gtmTestTools(200, domainStatusJSON)
 	defer server.Close()
 
 	status, _ := client.DomainStatus("example.akadns.net")
@@ -91,7 +91,7 @@ func TestDomainStatus(t *testing.T) {
 }
 
 func TestDomainCreate(t *testing.T) {
-	server, client := gtmTestTools(201, createdDomainJson)
+	server, client := gtmTestTools(201, createdDomainJSON)
 	defer server.Close()
 
 	domain, _ := client.DomainCreate("example.akadns.net", "weighted")
@@ -106,7 +106,7 @@ func TestDomainCreate(t *testing.T) {
 }
 
 func TestDomainCreateFailure(t *testing.T) {
-	server, client := gtmTestTools(500, errorResponseJson)
+	server, client := gtmTestTools(500, errorResponseJSON)
 	defer server.Close()
 
 	_, err := client.DomainCreate("example.akadns.net", "weighted")
@@ -121,7 +121,7 @@ func TestDomainCreateFailure(t *testing.T) {
 }
 
 func TestDomainUpdate(t *testing.T) {
-	server, client := gtmTestTools(200, updatedDomainJson)
+	server, client := gtmTestTools(200, updatedDomainJSON)
 	defer server.Close()
 
 	domain := &Domain{
@@ -141,7 +141,7 @@ func TestDomainUpdate(t *testing.T) {
 }
 
 func TestDataCenters(t *testing.T) {
-	server, client := gtmTestTools(200, dataCentersJson)
+	server, client := gtmTestTools(200, dataCentersJSON)
 	defer server.Close()
 
 	dcs, _ := client.DataCenters("foo.akadns.net")
@@ -157,7 +157,7 @@ func TestDataCenters(t *testing.T) {
 }
 
 func TestDataCenterCreate(t *testing.T) {
-	server, client := gtmTestTools(201, createdDataCenterJson)
+	server, client := gtmTestTools(201, createdDataCenterJSON)
 	defer server.Close()
 
 	dataCenter := &DataCenter{
@@ -184,7 +184,7 @@ func TestDataCenterCreate(t *testing.T) {
 }
 
 func TestDataCenterByNameSuccess(t *testing.T) {
-	server, client := gtmTestTools(200, dataCentersJson)
+	server, client := gtmTestTools(200, dataCentersJSON)
 	defer server.Close()
 
 	dc, _ := client.DataCenterByName("foo.akadns.net", "dcOne")
@@ -206,7 +206,7 @@ func TestDataCenterByNameError(t *testing.T) {
 }
 
 func TestDataCenter(t *testing.T) {
-	server, client := gtmTestTools(200, dataCenterJson)
+	server, client := gtmTestTools(200, dataCenterJSON)
 	defer server.Close()
 
 	dc, _ := client.DataCenter("foo.akadns.net", 1)
@@ -218,7 +218,7 @@ func TestDataCenter(t *testing.T) {
 }
 
 func TestDataCenterUpdate(t *testing.T) {
-	server, client := gtmTestTools(200, createdDataCenterJson)
+	server, client := gtmTestTools(200, createdDataCenterJSON)
 	defer server.Close()
 
 	dataCenter := &DataCenter{
@@ -265,7 +265,7 @@ func TestDataCenterDeleteFail(t *testing.T) {
 }
 
 func TestProperties(t *testing.T) {
-	server, client := gtmTestTools(200, propertiesResponseJson)
+	server, client := gtmTestTools(200, propertiesResponseJSON)
 	defer server.Close()
 
 	props, _ := client.Properties("foo.akadns.net")
@@ -281,7 +281,7 @@ func TestProperties(t *testing.T) {
 }
 
 func TestPropertiesSorted(t *testing.T) {
-	server, client := gtmTestTools(200, propertiesResponseJson)
+	server, client := gtmTestTools(200, propertiesResponseJSON)
 	defer server.Close()
 
 	props, _ := client.PropertiesSorted("foo.akadns.net")
@@ -313,7 +313,7 @@ func TestPropertiesSorted(t *testing.T) {
 }
 
 func TestProperty(t *testing.T) {
-	server, client := gtmTestTools(200, propJson)
+	server, client := gtmTestTools(200, propJSON)
 	defer server.Close()
 
 	prop, _ := client.Property("foo.akadns.net", "someName")
@@ -356,7 +356,7 @@ func TestPropertyCreate(t *testing.T) {
 		},
 	}
 
-	server, client := gtmTestTools(201, createdPropertyJson)
+	server, client := gtmTestTools(201, createdPropertyJSON)
 	defer server.Close()
 
 	createdProperty, err := client.PropertyCreate("foo.akadns.net", newProperty)
@@ -376,7 +376,7 @@ func TestPropertyCreate(t *testing.T) {
 func TestPropertyCreateFailure(t *testing.T) {
 	newProperty := &Property{}
 
-	server, client := gtmTestTools(500, errorResponseJson)
+	server, client := gtmTestTools(500, errorResponseJSON)
 	defer server.Close()
 
 	_, err := client.PropertyCreate("foo.akadns.net", newProperty)
