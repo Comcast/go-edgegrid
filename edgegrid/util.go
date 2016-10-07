@@ -59,6 +59,10 @@ func resourceRequest(c Client, method string, url string, body []byte, responseS
 	authReq := authenticate(c, req)
 	resp, err := c.GetHTTPClient().Do(authReq)
 
+	if err != nil {
+		return err
+	}
+
 	bodyContents, err := ioutil.ReadAll(resp.Body)
 	if LogRequests() {
 		fmt.Printf("Response status: \n\t%d\nresponse body: \n\t%s \n\n", resp.StatusCode, bodyContents)
