@@ -132,6 +132,14 @@ func papiPropertyLatestVersionEndpoint(c *AuthCredentials, propID, contractID, g
 	})
 }
 
+func papiPropertyHostnamesEndpoint(c *AuthCredentials, propID, version, contractID, groupID string) string {
+	return concat([]string{
+		papiPropertyVersionBase(c, version, propID, contractID, groupID),
+		"/hostnames/",
+		papiQuery(contractID, groupID),
+	})
+}
+
 func papiPropertyRulesEndpoint(c *AuthCredentials, propID, version, contractID, groupID string) string {
 	return concat([]string{
 		papiPropertyVersionBase(c, version, propID, contractID, groupID),
