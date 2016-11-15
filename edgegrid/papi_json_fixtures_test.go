@@ -120,6 +120,25 @@ const (
 		}
 	}`
 
+	propertyHostnamesJSON = `{
+		"accountId": "act_1-1TJZFB",
+		"contractId": "ctr_1-1TJZH5",
+		"groupId": "grp_15225",
+		"propertyId": "prp_175780",
+		"propertyVersion": 1,
+		"etag": "6aed418629b4e5c0",
+		"hostnames": {
+			"items": [
+				{
+					"cnameType": "EDGE_HOSTNAME",
+					"edgeHostnameId": "ehn_895822",
+					"cnameFrom": "example.com",
+					"cnameTo": "example.com.edgesuite.net"
+				}
+			]
+		}
+	}`
+
 	activationsJSON = `{
 		"accountId": "act_1-1TJZFB",
 		"contractId": "ctr_1-1TJZH5",

@@ -425,6 +425,28 @@ func TestPAPIPropertyRules(t *testing.T) {
 	}
 }
 
+func TestPAPIPropertyHostnames(t *testing.T) {
+	server, client := papiTestTools(200, propertyHostnamesJSON)
+	defer server.Close()
+
+	hostnames, err := client.PropertyHostnames("propertyId", "1", "contractId", "groupId")
+	if err != nil {
+		panic(err)
+	}
+	t.Log(pretty.PrettyFormat(hostnames))
+
+	hostname := hostnames.Hostnames[0]
+	if hostname.From != "example.com" {
+		t.Error("Expected Hostname.From to have correct value")
+	}
+	if hostname.ID != "ehn_895822" {
+		t.Error("Expected Hostname.ID to have correct value")
+	}
+	if hostname.To != "example.com.edgesuite.net" {
+		t.Error("Expected Hostname.To to have correct value")
+	}
+}
+
 func TestPAPIActivations(t *testing.T) {
 	server, client := papiTestTools(200, activationsJSON)
 	defer server.Close()
