@@ -82,6 +82,12 @@ func TestPropertyRulesEp(t *testing.T) {
 	}
 }
 
+func TestPropertyHostnamesEp(t *testing.T) {
+	if papiPropertyHostnamesEndpoint(a, "propId", "version", "contractId", "groupId") != "http://apibase.com/papi/v0/properties/propId/versions/version/hostnames/?contractId=contractId&groupId=groupId" {
+		t.Error(papiPropertyHostnamesEndpoint(a, "propId", "version", "contractId", "groupId"))
+	}
+}
+
 func TestActivationsEp(t *testing.T) {
 	if papiActivationsEndpoint(a, "propId", "contractId", "groupId") != "http://apibase.com/papi/v0/properties/propId/activations?contractId=contractId&groupId=groupId" {
 		t.Error("papiActivations should return the proper endpoint")

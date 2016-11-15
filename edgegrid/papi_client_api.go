@@ -151,6 +151,17 @@ func (c *PAPIClient) PropertyRules(propID, version, contractID, groupID string) 
 	return rules.Rules, err
 }
 
+// PropertyHostnames takes a propertyID string, a version, and a groupID and returns
+// the PapiPropertyHostnames for the associated property.
+func (c *PAPIClient) PropertyHostnames(propID, version, contractID, groupID string) (PapiPropertyHostnames, error) {
+	container := &papiPropertyHostnamesContainer{}
+	err := resourceRequest(c, "GET", papiPropertyHostnamesEndpoint(c.GetCredentials(), propID, version, contractID, groupID), nil, container)
+	if err != nil {
+		return PapiPropertyHostnames{}, err
+	}
+	return container.Hostnames, err
+}
+
 // Activations takes a propertyID, a contractID, and a groupID and returns
 // the associated []PapiActivation representing the property activations.
 func (c *PAPIClient) Activations(propID, contractID, groupID string) ([]PapiActivation, error) {

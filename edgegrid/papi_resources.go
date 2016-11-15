@@ -128,6 +128,27 @@ type PapiPropertyVersionSummary struct {
 	Note             string `json:"note"`
 }
 
+// PapiPropertyHostnames is a representation of the Akamai PAPI
+// property hostnames response at:
+// http://apibase.com/papi/v0/properties/propId/versions/version/hostnames/?contractId=contractId&groupId=groupId
+type PapiPropertyHostnames struct {
+	Hostnames []PapiPropertyHostname `json:"items"`
+}
+
+// papiPropertyHostnamesContainer is a helper struct to extract nesting in above struct
+type papiPropertyHostnamesContainer struct {
+	Hostnames PapiPropertyHostnames `json:"hostnames"`
+}
+
+// PapiPropertyHostname is a representation of the Akamai PAPI
+// hostname associated with each property at:
+// http://apibase.com/papi/v0/properties/propId/versions/version/hostnames/?contractId=contractId&groupId=groupId
+type PapiPropertyHostname struct {
+	ID   string `json:"edgeHostnameId"`
+	From string `json:"cnameFrom"`
+	To   string `json:"cnameTo"`
+}
+
 // PapiPropertyRules is a representation of the Akamai PAPI
 // property rules response at:
 // http://apibase.com/papi/v0/properties/propId/versions/version/rules/?contractId=contractId&groupId=groupId
