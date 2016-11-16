@@ -62,6 +62,19 @@ func (c *GTMClient) DomainUpdate(domain *Domain) (*DomainResponse, error) {
 	return updatedDomain, err
 }
 
+// DomainDelete takes a domain and issues a request to delete it.
+func (c *GTMClient) DomainDelete(name string) error {
+	resp, err := doClientReq(c, "DELETE", domainEndpoint(c.GetCredentials(), name), nil)
+
+	if err != nil {
+		return err
+	}
+	if resp.StatusCode != http.StatusOK {
+		return errors.New("HTTP status not OK")
+	}
+	return err
+}
+
 // DataCenters takes an Akamai GTM domain name and returns a []DataCenter
 // representing the datacenters associated with the domain.
 func (c *GTMClient) DataCenters(domain string) ([]DataCenter, error) {
