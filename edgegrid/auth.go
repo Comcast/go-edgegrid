@@ -29,13 +29,14 @@ type AuthParams struct {
 // NewAuthParams returns an AuthParams generated from req, accessToken,
 // clientToken, and clientSecret.
 func NewAuthParams(req *http.Request, accessToken, clientToken, clientSecret string) AuthParams {
+	id, _ := uuid.NewV4()
 	return AuthParams{
 		req,
 		clientToken,
 		accessToken,
 		clientSecret,
 		time.Now().UTC().Format("20060102T15:04:05+0000"),
-		uuid.NewV4().String(),
+		id.String(),
 		[]string{},
 	}
 }
